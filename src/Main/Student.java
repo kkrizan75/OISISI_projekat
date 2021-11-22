@@ -10,7 +10,7 @@ public class Student {
 	private String Name;
 	private String Surname;
 	private LocalDate Birth_date;
-	private Adress adress;
+	private Address address;
 	private String Conntact_phone;
 	private String E_mail;
 	private String Index;
@@ -23,13 +23,13 @@ public class Student {
 	
 	
 	
-	public Student(String name, String surname, LocalDate birth_date, Adress adress, String conntact_phone,
+	public Student(String name, String surname, LocalDate birth_date, Address address, String conntact_phone,
 			String e_mail, String index, int year_of_enrollment, int current_year,Status_enum status) {
 		super();
 		Name = name;
 		Surname = surname;
 		Birth_date = birth_date;
-		this.adress = adress;
+		this.address = address;
 		Conntact_phone = conntact_phone;
 		E_mail = e_mail;
 		Index = index;
@@ -63,11 +63,11 @@ public class Student {
 	public void setBirth_date(LocalDate birth_date) {
 		Birth_date = birth_date;
 	}
-	public Adress getAdress() {
-		return adress;
+	public Address getAdress() {
+		return address;
 	}
-	public void setAdress(Adress adress) {
-		this.adress = adress;
+	public void setAdress(Address address) {
+		this.address = address;
 	}
 	public String getConntact_phone() {
 		return Conntact_phone;
