@@ -18,8 +18,8 @@ public class Student {
 	private int Current_year;
 	private Status_enum Status;
 	private float Avg_grade;
-	private Vector<Grade> Passed_subjects = new Vector<Grade>();
-	private Vector<Subject> Unpassed_subjects = new Vector<Subject>();
+	private Vector<Grade> Passed_subjects;
+	private Vector<Subject> Unpassed_subjects;
 	
 	
 	
@@ -36,6 +36,8 @@ public class Student {
 		Year_of_enrollment = year_of_enrollment;
 		Current_year = current_year;
 		Status = status;
+		Passed_subjects = new Vector<Grade>();
+		Unpassed_subjects = new Vector<Subject>();
 	}
 	
 	public Status_enum getStatus() {
