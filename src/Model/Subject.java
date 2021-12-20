@@ -1,8 +1,8 @@
-package Main;
+package Model;
 
 import java.util.Vector;
 
-import Main.Subject.Semester_enum;
+import Model.Subject.Semester_enum;
 
 public class Subject {
 	

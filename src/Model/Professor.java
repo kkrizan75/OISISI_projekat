@@ -1,4 +1,4 @@
-package Main;
+package Model;
 
 import java.time.LocalDate;
 import java.util.Vector;
