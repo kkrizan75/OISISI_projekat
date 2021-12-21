@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 public class Main_Frame extends JFrame {
@@ -31,6 +32,12 @@ public class Main_Frame extends JFrame {
 		StatusBar sb = new StatusBar();
 		add(tb, BorderLayout.NORTH);
 		add(sb, BorderLayout.SOUTH);
+		
+		JPanel defaultPanel = new JPanel();
+		defaultPanel.setBackground(new Color(255,255,255));
+		defaultPanel.setLayout(new BorderLayout());
+		defaultPanel.add(new TabbedPane(),BorderLayout.CENTER);
+		add(defaultPanel);
 		
 		}
 }
