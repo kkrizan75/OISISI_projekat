@@ -50,8 +50,8 @@ public class Toolbar extends JToolBar {
 		
 		
 		JTextField searchbar = new JTextField();
-		searchbar.setPreferredSize( new Dimension( 250, 30 ) );
-		searchbar.setMaximumSize(new Dimension(300,30));
+		searchbar.setPreferredSize( new Dimension(250, 30));
+		searchbar.setMaximumSize(new Dimension(250,30));
 		add(searchbar);
 		
 		JButton btnSearch = new JButton();
