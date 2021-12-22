@@ -1,13 +1,17 @@
 package GUI;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 public class Menu_Bar extends JMenuBar {
@@ -18,6 +22,7 @@ public class Menu_Bar extends JMenuBar {
 		
 
 			JMenu file = new JMenu("File");
+	
 			file.setMnemonic(KeyEvent.VK_F);
 		JMenuItem miStudents = new JMenuItem("Students");
 		Icon icon = new ImageIcon("images\\student.png");
@@ -45,6 +50,11 @@ public class Menu_Bar extends JMenuBar {
 		miNew.setIcon(icon);
 		miNew.setMnemonic(KeyEvent.VK_N);
 		miNew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		
+		
+		miNew.addActionListener(new ActionListener1());
+		
+		
 		JMenuItem miOpen = new JMenu("Open");
 		icon = new ImageIcon("images\\open.png");
 		miOpen.setIcon(icon);

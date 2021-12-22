@@ -11,6 +11,16 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 public class Main_Frame extends JFrame {
+	
+	
+	public static Main_Frame instance = null;
+	
+	public static Main_Frame getInstance() {
+		if(instance == null) 
+			instance = new Main_Frame();
+		return instance;
+	}
+	
 	public Main_Frame() {
 		super();
 		

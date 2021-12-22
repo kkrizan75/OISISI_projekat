@@ -48,17 +48,15 @@ public class StatusBar extends JPanel {
 		
 		setBorder(BorderFactory.createMatteBorder(1, 0, 0, 0, Color.black));
 		setBackground(new Color(230,230,230));
-		updateCT();
+		updateCT(0);
 	}
 	
-	public static void updateCT() {
+	public static void updateCT(int i) {
 		String str;
-		int i = TabbedPane.getInstance().getSelectedIndex();
 		if(i == 0) str = "Students";
 		else if(i == 1) str = "Professors";
 		else str = "Subjects";
-		System.out.println(str);
-		//setCurrentTab(str);
+		setCurrentTab(str);
 	}
 	
 	public static void setCurrentTab(String s) {
