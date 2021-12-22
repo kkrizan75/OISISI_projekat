@@ -9,35 +9,38 @@ public class Student {
 
 	private String Name;
 	private String Surname;
-	private LocalDate Birth_date;
+	private LocalDate birthDate;
 	private Address address;
-	private String Conntact_phone;
-	private String E_mail;
+	private String contactPhone;
+	private String eMail;
 	private String Index;
-	private int Year_of_enrollment;
-	private int Current_year;
+	private int yearOfEnrollment;
+	private int currentYear;
 	private Status_enum Status;
-	private float Avg_grade;
-	private Vector<Grade> Passed_subjects;
-	private Vector<Subject> Unpassed_subjects;
+	private float avgGrade;
+	private Vector<Grade> passedSubjects;
+	private Vector<Subject> unpassedSubjects;
 	
+	public Student() {
+		super();
+	}
 	
-	
-	public Student(String name, String surname, LocalDate birth_date, Address address, String conntact_phone,
-			String e_mail, String index, int year_of_enrollment, int current_year,Status_enum status) {
+	public Student(String name, String surname, LocalDate birthDate, Address address, String contactPhone,
+			String eMail, String index, int yearOfEnrollment, int currentYear,Status_enum status, float ag) {
 		super();
 		Name = name;
 		Surname = surname;
-		Birth_date = birth_date;
+		this.birthDate = birthDate;
 		this.address = address;
-		Conntact_phone = conntact_phone;
-		E_mail = e_mail;
+		this.contactPhone = contactPhone;
+		this.eMail = eMail;
 		Index = index;
-		Year_of_enrollment = year_of_enrollment;
-		Current_year = current_year;
+		this.yearOfEnrollment = yearOfEnrollment;
+		this.currentYear = currentYear;
 		Status = status;
-		Passed_subjects = new Vector<Grade>();
-		Unpassed_subjects = new Vector<Subject>();
+		avgGrade = ag;
+		passedSubjects = new Vector<Grade>();
+		unpassedSubjects = new Vector<Subject>();
 	}
 	
 	public Status_enum getStatus() {
@@ -59,11 +62,11 @@ public class Student {
 	public void setSurname(String surname) {
 		Surname = surname;
 	}
-	public LocalDate getBirth_date() {
-		return Birth_date;
+	public LocalDate getbirthDate() {
+		return birthDate;
 	}
-	public void setBirth_date(LocalDate birth_date) {
-		Birth_date = birth_date;
+	public void setbirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 	public Address getAdress() {
 		return address;
@@ -71,17 +74,17 @@ public class Student {
 	public void setAdress(Address address) {
 		this.address = address;
 	}
-	public String getConntact_phone() {
-		return Conntact_phone;
+	public String getcontactPhone() {
+		return contactPhone;
 	}
-	public void setConntact_phone(String conntact_phone) {
-		Conntact_phone = conntact_phone;
+	public void setcontactPhone(String contactPhone) {
+		this.contactPhone = contactPhone;
 	}
-	public String getE_mail() {
-		return E_mail;
+	public String geteMail() {
+		return eMail;
 	}
-	public void setE_mail(String e_mail) {
-		E_mail = e_mail;
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
 	}
 	public String getIndex() {
 		return Index;
@@ -89,37 +92,37 @@ public class Student {
 	public void setIndex(String index) {
 		Index = index;
 	}
-	public int getYear_of_enrollment() {
-		return Year_of_enrollment;
+	public int getyearOfEnrollment() {
+		return yearOfEnrollment;
 	}
-	public void setYear_of_enrollment(int year_of_enrollment) {
-		Year_of_enrollment = year_of_enrollment;
+	public void setyearOfEnrollment(int yearOfEnrollment) {
+		this.yearOfEnrollment = yearOfEnrollment;
 	}
-	public int getCurrent_year() {
-		return Current_year;
+	public int getcurrentYear() {
+		return currentYear;
 	}
-	public void setCurrent_year(int current_year) {
-		Current_year = current_year;
+	public void setcurrentYear(int currentYear) {
+		this.currentYear = currentYear;
 	}
-	public float getAvg_grade() {
-		return Avg_grade;
+	public float getavgGrade() {
+		return avgGrade;
 	}
-	public void setAvg_grade(float avg_grade) {
-		Avg_grade = avg_grade;
+	public void setavgGrade(float avgGrade) {
+		this.avgGrade = avgGrade;
 	}
-	public Vector<Subject> getUnpassed_subjects() {
-		return Unpassed_subjects;
+	public Vector<Subject> getunpassedSubjects() {
+		return unpassedSubjects;
 	}
 	public void setUnpassed_subject(Subject unpassed_subject) {
-		Unpassed_subjects.add(unpassed_subject);
+		unpassedSubjects.add(unpassed_subject);
 	}
 
-	public Vector<Grade> getPassed_subjects() {
-		return Passed_subjects; 
+	public Vector<Grade> getpassedSubjects() {
+		return passedSubjects; 
 	}
 
-	public void setPassed_subjects(Grade passed) {
-		Passed_subjects.add(passed); 
+	public void setpassedSubjects(Grade passed) {
+		passedSubjects.add(passed); 
 	}
 	
 }

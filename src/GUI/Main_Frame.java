@@ -1,4 +1,4 @@
-package Main;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,6 +11,16 @@ import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
 
 public class Main_Frame extends JFrame {
+	
+	
+	public static Main_Frame instance = null;
+	
+	public static Main_Frame getInstance() {
+		if(instance == null) 
+			instance = new Main_Frame();
+		return instance;
+	}
+	
 	public Main_Frame() {
 		super();
 		
@@ -31,6 +41,7 @@ public class Main_Frame extends JFrame {
 		
 		Toolbar tb = new Toolbar();
 		StatusBar sb = new StatusBar();
+
 		add(tb, BorderLayout.NORTH);
 		add(sb, BorderLayout.SOUTH);
 		

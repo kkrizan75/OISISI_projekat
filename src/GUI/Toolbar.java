@@ -1,4 +1,4 @@
-package Main;
+package GUI;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,7 +26,7 @@ public class Toolbar extends JToolBar {
 		btnNew.setBackground(Color.WHITE);
 		btnNew.setBorderPainted(false);
 		add(btnNew);
-
+		btnNew.addActionListener(new ActionListener1());
 		addSeparator();
 
 		JButton btnEdit = new JButton();
