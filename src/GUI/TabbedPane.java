@@ -1,10 +1,11 @@
-package Main;
+package GUI;
 
 import java.awt.Color;
-import java.awt.Component;
 
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTable;
+
+import tables.StudentTable;
 
 public class TabbedPane extends JTabbedPane {
 	
@@ -25,16 +26,19 @@ public class TabbedPane extends JTabbedPane {
 	private TabbedPane() {
 		
 		super();
-		addTab("Studenti",null);
-		addTab("Profesori", null);
-		addTab("Predmeti", null);
+		
+		TPchangeListener cL = new TPchangeListener();
+		addChangeListener(cL);
+		addTab("Students",new JScrollPane(StudentTable.getInstance()));
+		addTab("Professors", null);
+		addTab("Subjects", null);
 		this.setBackground(new Color(255,255,255));
 		
 	
 	}
 	
-	public int getSelectedIdx() {
+	public static int getSelectedIdx() {
 		return instance.getSelectedIndex();
 	}
-
+	
 }

@@ -1,4 +1,4 @@
-package Main;
+package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -31,6 +31,7 @@ public class Main_Frame extends JFrame {
 		
 		Toolbar tb = new Toolbar();
 		StatusBar sb = new StatusBar();
+
 		add(tb, BorderLayout.NORTH);
 		add(sb, BorderLayout.SOUTH);
 		
