@@ -1,8 +1,10 @@
 package tables;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.Address;
 import Model.Student;
 import Model.Student.Status_enum;
 
@@ -38,6 +40,8 @@ public class StudentBase {
 
 	private void initStudente() {
 		this.Studenti = new ArrayList<Student>();
+		
+		this.Studenti.add(new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B));
 
 		
 	}
@@ -108,8 +112,8 @@ public class StudentBase {
 		
 	}
 
-	public void dodajStudenta(String ime, String prezime, String klub) {
-		this.Studenti.add(new Student());
+	public void dodajStudenta(Student student) {
+		this.Studenti.add(student);
 	}
 
 	public void izbrisiStudenta(String id) {
