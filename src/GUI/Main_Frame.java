@@ -13,7 +13,7 @@ import javax.swing.WindowConstants;
 public class Main_Frame extends JFrame {
 	
 	
-	public static Main_Frame instance = null;
+	private static Main_Frame instance = null;
 	
 	public static Main_Frame getInstance() {
 		if(instance == null) 
@@ -21,7 +21,7 @@ public class Main_Frame extends JFrame {
 		return instance;
 	}
 	
-	public Main_Frame() {
+	private Main_Frame() {
 		super();
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();

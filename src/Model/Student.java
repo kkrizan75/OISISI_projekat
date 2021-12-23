@@ -26,7 +26,7 @@ public class Student {
 	}
 	
 	public Student(String name, String surname, LocalDate birthDate, Address address, String contactPhone,
-			String eMail, String index, int yearOfEnrollment, int currentYear,Status_enum status, float ag) {
+			String eMail, String index, int yearOfEnrollment, int currentYear,Status_enum status) {
 		super();
 		Name = name;
 		Surname = surname;
@@ -38,11 +38,20 @@ public class Student {
 		this.yearOfEnrollment = yearOfEnrollment;
 		this.currentYear = currentYear;
 		Status = status;
-		avgGrade = ag;
 		passedSubjects = new Vector<Grade>();
 		unpassedSubjects = new Vector<Subject>();
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Student [Name=" + Name + ", Surname=" + Surname + ", birthDate=" + birthDate + ", address=" + address
+				+ ", contactPhone=" + contactPhone + ", eMail=" + eMail + ", Index=" + Index + ", yearOfEnrollment="
+				+ yearOfEnrollment + ", currentYear=" + currentYear + ", Status=" + Status + ", avgGrade=" + avgGrade
+				+ ", passedSubjects=" + passedSubjects + ", unpassedSubjects=" + unpassedSubjects + "]";
+	}
+
 	public Status_enum getStatus() {
 		return Status;
 	}
