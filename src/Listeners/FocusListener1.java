@@ -62,10 +62,10 @@ public class FocusListener1 implements FocusListener {
 				txt.setForeground(Color.BLACK);
 				String[] txt1 = txt.getText().split("\\W+",3);
 				if (txt1.length != 3) {
+					addStudentdialog.getInstance().setFalse(2);
 					JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Format of date: YYYY.MM.DD","Wrong Format of Birth Date",0);
 					txt.setText("Enter Birth Date...");
 					txt.setForeground(Color.RED);
-					addStudentdialog.getInstance().setFalse(2);
 					return;
 				}
 				addStudentdialog.getInstance().setBirthDate(LocalDate.of(Integer.parseInt(txt1[0]), Integer.parseInt(txt1[1]), Integer.parseInt(txt1[2])));
@@ -82,10 +82,10 @@ public class FocusListener1 implements FocusListener {
 				txt.setForeground(Color.BLACK);
 				String[] txt1 = txt.getText().split(" ",4);
 				if (txt1.length != 4) {
+					addStudentdialog.getInstance().setFalse(3);
 					JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Format of Address: Street Number City Country","Wrong Format of Address",0);
 					txt.setText("Enter Address...");
 					txt.setForeground(Color.RED);
-					addStudentdialog.getInstance().setFalse(3);
 					return;
 				}
 				Address a = new Address(txt1[0],txt1[1],txt1[2],txt1[3]);
