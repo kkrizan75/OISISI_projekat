@@ -7,6 +7,7 @@ import java.util.List;
 import Model.Address;
 import Model.Student;
 import Model.Student.Status_enum;
+import dialogs.editStudentdialog;
 
 public class StudentBase {
 	private static StudentBase instance = null;
@@ -125,14 +126,18 @@ public class StudentBase {
 		}
 	}
 
-	public void izmeniStudenta(String id, String ime, String prezime, String klub,Status_enum se, int cy,float ag) {
+	public void izmeniStudenta() {
+		
 		for (Student Student : Studenti) {
-			if (Student.getIndex().equals(id)) {
-				Student.setname(ime);
-				Student.setSurname(prezime);
-				Student.setStatus(se);
-				Student.setcurrentYear(cy);
-				Student.setavgGrade(ag);
+			if (Student.getIndex().equals(editStudentdialog.getInstance().getIndex())) {
+				Student.setname(editStudentdialog.getInstance().getName());
+				Student.setSurname(editStudentdialog.getInstance().getSurname());
+				Student.setStatus(editStudentdialog.getInstance().getStatus());
+				Student.setcurrentYear(editStudentdialog.getInstance().getCurrentYear());
+				Student.setAdress(editStudentdialog.getInstance().getAddress());
+				Student.setbirthDate(editStudentdialog.getInstance().getBirthDate());
+				Student.setcontactPhone(editStudentdialog.getInstance().getContactPhone());
+				Student.setyearOfEnrollment(editStudentdialog.getInstance().getYearOfEnrollment());
 			}
 		}
 	}

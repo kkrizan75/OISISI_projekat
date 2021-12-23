@@ -70,7 +70,8 @@ public class addStudentdialog extends JDialog{
 		public static addStudentdialog getInstance() {
 			if(instance == null) {
 				instance = new addStudentdialog();
-				instance.setconfF();}
+				instance.setconfF();
+				}
 			return instance;
 		}
 		
@@ -118,8 +119,7 @@ public class addStudentdialog extends JDialog{
 		
 		public addStudentdialog(Frame parent, String s, boolean modal) {
 			super(parent,s,modal);
-			getInstance();
-			Dimension dim = new Dimension(120, 25);
+			Dimension dim = new Dimension(200, 25);
 
 			JPanel panName = new JPanel(new FlowLayout(FlowLayout.CENTER));
 			JLabel lblName = new JLabel("Name*:");
@@ -268,7 +268,7 @@ public class addStudentdialog extends JDialog{
 			boxC.add(panConfCanc);
 			add(boxC, BorderLayout.NORTH);
 			
-			setBounds(750, 180, 400, 500);
+			setBounds(750, 180, 500, 600);
 			
 
 		}

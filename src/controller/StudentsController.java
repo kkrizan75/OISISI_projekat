@@ -1,7 +1,10 @@
 package controller;
 
+import javax.swing.JOptionPane;
+
 import GUI.Main_Frame;
 import Listeners.ActionListener1;
+import Listeners.EditActionListener;
 import Model.Student;
 import dialogs.addStudentdialog;
 import tables.AbstractTableStudents;
@@ -27,7 +30,52 @@ private static StudentsController instance = null;
 		StudentBase.getInstance().dodajStudenta(student);
 		ActionListener1.getaSd().setVisible(false);
 		AbstractTableStudents model = (AbstractTableStudents) StudentTable.getInstance().getModel();
-        model.fireTableRowsInserted(1,1);
+		model.fireTableDataChanged();
 		Main_Frame.getInstance().validate();
 	}
+	
+	public void deleteStudent(int rowSelectedIndex) {
+		if (checkRow(rowSelectedIndex)) return;
+		int result = JOptionPane.showConfirmDialog(Main_Frame.getInstance(),"Are you sure you want to delete this Student?", "Sure?",
+		               JOptionPane.YES_NO_OPTION,
+		               JOptionPane.QUESTION_MESSAGE);
+		if (result == JOptionPane.YES_OPTION) {
+    	// izmena modela
+    	Student student = StudentBase.getInstance().getRow(rowSelectedIndex);
+    	StudentBase.getInstance().izbrisiStudenta(student.getIndex());
+		// azuriranje prikaza
+    	AbstractTableStudents model = (AbstractTableStudents) StudentTable.getInstance().getModel();
+    	model.fireTableDataChanged();
+		Main_Frame.getInstance().validate();
+			}
+	}
+	
+	public Student findSelcetedStudent(int rowSelectedIndex) {
+		return StudentBase.getInstance().getRow(rowSelectedIndex);
+	}
+	
+	public Student findStudentByInD(String ind) {
+		for (Student S : StudentBase.getInstance().getStudenti()) {
+			if(S.getIndex().equals(ind)) return S;
+		}
+		return null;
+	}
+	
+	public boolean checkRow(int rowSelectedIndex) {
+		if (rowSelectedIndex < 0 || rowSelectedIndex >= StudentBase.getInstance().getStudenti().size()) {
+			JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "No row selected!","Error",2);
+			return true;
+		}
+		return false;
+	}
+	
+	public void editStudent(int rowSelectedIndex) {
+		if (checkRow(rowSelectedIndex)) return;
+		EditActionListener.geteSd().setVisible(false);
+		StudentBase.getInstance().izmeniStudenta();
+		AbstractTableStudents model = (AbstractTableStudents) StudentTable.getInstance().getModel();
+    	model.fireTableDataChanged();
+		Main_Frame.getInstance().validate();
+	}
+	
 }

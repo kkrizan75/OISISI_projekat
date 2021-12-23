@@ -11,6 +11,8 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import Listeners.ActionListener1;
+import Listeners.DeleteActionListener;
+import Listeners.EditActionListener;
 
 public class Toolbar extends JToolBar {
 	
@@ -36,6 +38,7 @@ public class Toolbar extends JToolBar {
 		btnEdit.setIcon(new ImageIcon("images\\edit2.png"));
 		btnEdit.setBackground(Color.WHITE);
 		btnEdit.setBorderPainted(false);
+		btnEdit.addActionListener(new EditActionListener());
 		add(btnEdit);
 
 		addSeparator();
@@ -45,6 +48,7 @@ public class Toolbar extends JToolBar {
 		btnDelete.setIcon(new ImageIcon("images\\erase.png"));
 		btnDelete.setBackground(Color.WHITE);
 		btnDelete.setBorderPainted(false);
+		btnDelete.addActionListener(new DeleteActionListener());
 		add(btnDelete);
 		
 		add(Box.createHorizontalGlue());
