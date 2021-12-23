@@ -1,6 +1,7 @@
 package Model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Student {
@@ -18,8 +19,8 @@ public class Student {
 	private int currentYear;
 	private Status_enum Status;
 	private float avgGrade;
-	private Vector<Grade> passedSubjects;
-	private Vector<Subject> unpassedSubjects;
+	private ArrayList<Grade> passedSubjects;
+	private ArrayList<Subject> unpassedSubjects;
 	
 	public Student() {
 		super();
@@ -38,8 +39,8 @@ public class Student {
 		this.yearOfEnrollment = yearOfEnrollment;
 		this.currentYear = currentYear;
 		Status = status;
-		passedSubjects = new Vector<Grade>();
-		unpassedSubjects = new Vector<Subject>();
+		passedSubjects = new ArrayList<Grade>();
+		unpassedSubjects = new ArrayList<Subject>();
 	}
 	
 	
@@ -63,7 +64,7 @@ public class Student {
 		return Name;
 	}
 	public void setname(String name) {
-		name = Name;
+		Name = name;
 	}
 	public String getSurname() {
 		return Surname;
@@ -119,14 +120,14 @@ public class Student {
 	public void setavgGrade(float avgGrade) {
 		this.avgGrade = avgGrade;
 	}
-	public Vector<Subject> getunpassedSubjects() {
+	public ArrayList<Subject> getunpassedSubjects() {
 		return unpassedSubjects;
 	}
 	public void setUnpassed_subject(Subject unpassed_subject) {
 		unpassedSubjects.add(unpassed_subject);
 	}
 
-	public Vector<Grade> getpassedSubjects() {
+	public ArrayList<Grade> getpassedSubjects() {
 		return passedSubjects; 
 	}
 

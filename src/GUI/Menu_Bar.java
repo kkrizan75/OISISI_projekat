@@ -1,20 +1,18 @@
 package GUI;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 
 import Listeners.ActionListener1;
+import Listeners.DeleteActionListener;
+import Listeners.EditActionListener;
 
 public class Menu_Bar extends JMenuBar {
 	
@@ -90,12 +88,14 @@ public class Menu_Bar extends JMenuBar {
 		JMenuItem miEdit = new JMenuItem("Edit");
 		miEdit.setIcon(icon);
 		miEdit.setMnemonic(KeyEvent.VK_E);
+		miEdit.addActionListener(new EditActionListener());
 		miEdit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		JMenuItem miDelete = new JMenuItem("Delete");
 		icon = new ImageIcon("images\\delete.png");
 		miDelete.setIcon(icon);
 		miDelete.setMnemonic(KeyEvent.VK_D);
 		miDelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		miDelete.addActionListener(new DeleteActionListener());
 		edit.add(miEdit);
 		edit.addSeparator();
 		edit.add(miDelete);
