@@ -2,14 +2,14 @@ package controller;
 
 import javax.swing.JOptionPane;
 
-import GUI.Main_Frame;
-import Listeners.ActionListener1;
-import Listeners.EditActionListener;
 import Model.Student;
-import dialogs.addStudentdialog;
-import tables.AbstractTableStudents;
-import tables.StudentBase;
-import tables.StudentTable;
+import view.AbstractTableStudents;
+import view.ActionListener1;
+import view.EditActionListener;
+import view.Main_Frame;
+import view.StudentBase;
+import view.StudentTable;
+import view.addStudentdialog;
 
 public class StudentsController {
 private static StudentsController instance = null;
@@ -69,8 +69,7 @@ private static StudentsController instance = null;
 		return false;
 	}
 	
-	public void editStudent(int rowSelectedIndex) {
-		if (checkRow(rowSelectedIndex)) return;
+	public void editStudent() {
 		EditActionListener.geteSd().setVisible(false);
 		StudentBase.getInstance().izmeniStudenta();
 		AbstractTableStudents model = (AbstractTableStudents) StudentTable.getInstance().getModel();

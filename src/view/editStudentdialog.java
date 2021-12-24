@@ -1,4 +1,4 @@
-package dialogs;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,19 +22,19 @@ import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
-import Listeners.EditActionListener;
-import Listeners.EditFocusListener;
 import Model.Address;
 import Model.Grade;
 import Model.Student;
 import Model.Student.Status_enum;
 import controller.StudentsController;
-import tables.StudentTable;
+import view.addStudentdialog.ActionListener3;
 
 public class editStudentdialog extends JDialog{
 	private static final long serialVersionUID = 3591599721565020284L;
 	
 	private boolean[] conf = new boolean[8];
+	
+	private JButton ConfirmB = new JButton();
 	
 	private String Name;
 	private String Surname;
@@ -46,6 +46,8 @@ public class editStudentdialog extends JDialog{
 	private int yearOfEnrollment;
 	private int currentYear = 1;
 	private Status_enum Status = Status_enum.S;
+	
+	private String oldIND;
 	
 	private static editStudentdialog instance = null;
 	
@@ -63,7 +65,11 @@ public class editStudentdialog extends JDialog{
 		this.setYearOfEnrollment(S.getyearOfEnrollment());
 		this.setCurrentYear(S.getcurrentYear());
 		this.setStatus(S.getStatus());
-		
+		this.setoldIND((S.getIndex()));
+		ConfirmB.setBackground(Color.GRAY);
+		ConfirmB.setPreferredSize(new Dimension(150,40));
+		ConfirmB.setText("Confirm");
+		ConfirmB.addActionListener(new ActionListenerCONF());
 	}
 	
 	public static editStudentdialog getInstance() {
@@ -115,13 +121,21 @@ public class editStudentdialog extends JDialog{
 			}
 	}
 	
-	private boolean checkB() {
+	public boolean checkB() {
 		for (boolean b : conf) {
 			if (!b) {
 				return b;
 			}
 		}
 		return true;
+	}
+	
+	public void setconfT() {
+		ConfirmB.setEnabled(true);
+	}
+	
+	public void setconfF() {
+		ConfirmB.setEnabled(false);
 	}
 	
 	public void setTrue(int i) {
@@ -137,7 +151,7 @@ public class editStudentdialog extends JDialog{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (getInstance().checkB()) 
-				StudentsController.getInstance().editStudent(StudentTable.getInstance().getSelectedRow());
+				StudentsController.getInstance().editStudent();
 			else {
 				JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Blanks cannot be empty.");
 			}
@@ -149,6 +163,7 @@ public class editStudentdialog extends JDialog{
 		super(f,s,b);
 		Student S = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
 		getInstance().setconfF(S);
+		getInstance().setconfT();
 		Dimension dim = new Dimension(200, 25);
 		JPanel panName = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblName = new JLabel("Name*:");
@@ -273,15 +288,6 @@ public class editStudentdialog extends JDialog{
 		cS.addFocusListener(new  FocusListenerCB());
 		panStatus.add(cS);
 		
-		
-		
-		JButton ConfirmB = new JButton();
-		ConfirmB.setBackground(Color.GRAY);
-		ConfirmB.setPreferredSize(new Dimension(150,40));
-		ConfirmB.setText("Confirm");
-		ConfirmB.addActionListener(new ActionListenerCONF());
-		
-		
 		JButton CancelB = new JButton();
 		CancelB.setBackground(Color.GRAY);
 		CancelB.setPreferredSize(new Dimension(150,40));
@@ -295,7 +301,7 @@ public class editStudentdialog extends JDialog{
 		});
 		
 		JPanel panConfCanc = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		panConfCanc.add(ConfirmB);
+		panConfCanc.add(getInstance().ConfirmB);
 		panConfCanc.add(CancelB);
 		
 		
@@ -321,13 +327,25 @@ public class editStudentdialog extends JDialog{
 		
 		dT.add("Passed Subjects", panTest);
 		dT.add("Failed Subjects", null);
-		add(dT, BorderLayout.NORTH);
+		JPanel defaultPanel = new JPanel();
+		defaultPanel.setBackground(new Color(255,255,255));
+		defaultPanel.setLayout(new BorderLayout());
+		defaultPanel.add(dT,BorderLayout.CENTER);
+		add(defaultPanel);
 		
 		setBounds(750, 180, 500, 600);
 		
 	}
 	
+	
+	public String getoldIND() {
+		return oldIND;
+	}
 
+	public void setoldIND(String ind) {
+		oldIND = ind;
+	}
+	
 	public String getName() {
 		return Name;
 	}

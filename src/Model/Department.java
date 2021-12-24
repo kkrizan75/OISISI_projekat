@@ -7,14 +7,14 @@ public class Department {
 	private int code;
 	private String name;
 	private Professor boss;
-	private Vector<Professor> prof_list = new Vector<Professor>();
+	private Vector<Professor> profList = new Vector<Professor>();
 	
 	public Department(int code, String name, Professor boss, Vector<Professor> prof_list) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.boss = boss;
-		this.prof_list = prof_list;
+		this.profList = prof_list;
 	}
 	
 	public int getCode() {
@@ -36,10 +36,10 @@ public class Department {
 		this.boss = boss;
 	}
 	public Vector<Professor> getProf_list() {
-		return prof_list;
+		return profList;
 	}
 	public void setProf_list(Vector<Professor> prof_list) {
-		this.prof_list = prof_list;
+		this.profList = prof_list;
 	}
 	
 	

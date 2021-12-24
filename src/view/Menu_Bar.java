@@ -1,4 +1,4 @@
-package GUI;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -9,10 +9,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
-
-import Listeners.ActionListener1;
-import Listeners.DeleteActionListener;
-import Listeners.EditActionListener;
 
 public class Menu_Bar extends JMenuBar {
 	

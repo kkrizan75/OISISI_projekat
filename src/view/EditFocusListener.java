@@ -1,4 +1,4 @@
-package Listeners;
+package view;
 
 import java.awt.Color;
 import java.awt.event.FocusEvent;
@@ -9,9 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Model.Address;
-import dialogs.addStudentdialog;
 
-public class FocusListener1 implements FocusListener {
+public class EditFocusListener implements FocusListener {
 
 	@Override
 	public void focusGained(FocusEvent arg0) {
@@ -24,20 +23,18 @@ public class FocusListener1 implements FocusListener {
 	@Override
 	public void focusLost(FocusEvent arg0) {
 		JTextField txt = (JTextField) arg0.getComponent();
-		//JComboBox cB = (JComboBox) arg0.getComponent();
 		txt.setBackground(Color.LIGHT_GRAY);
 
-		// polje prezime je obavezno za unos:
 		if (txt.getName().equals("txtName")) {
 
 			if (txt.getText().trim().equals("") || txt.getText().trim().equals("Enter Name...")) {
 				txt.setText("Enter Name...");
 				txt.setForeground(Color.RED);
-				addStudentdialog.getInstance().setFalse(0);
+				editStudentdialog.getInstance().setFalse(0);
 			} else {
 				txt.setForeground(Color.BLACK);
-				addStudentdialog.getInstance().setName(txt.getText().trim());
-				addStudentdialog.getInstance().setTrue(0);
+				editStudentdialog.getInstance().setName(txt.getText().trim());
+				editStudentdialog.getInstance().setTrue(0);
 			}
 			
 		}
@@ -45,11 +42,11 @@ public class FocusListener1 implements FocusListener {
 			if (txt.getText().trim().equals("") || txt.getText().trim().equals("Enter Surname...")) {
 				txt.setText("Enter Surname...");
 				txt.setForeground(Color.RED);
-				addStudentdialog.getInstance().setFalse(1);
+				editStudentdialog.getInstance().setFalse(1);
 			} else {
 				txt.setForeground(Color.BLACK);
-				addStudentdialog.getInstance().setSurname(txt.getText().trim());
-				addStudentdialog.getInstance().setTrue(1);
+				editStudentdialog.getInstance().setSurname(txt.getText().trim());
+				editStudentdialog.getInstance().setTrue(1);
 			}
 		}
 		
@@ -57,19 +54,19 @@ public class FocusListener1 implements FocusListener {
 			if (txt.getText().trim().equals("") || txt.getText().trim().equals("Enter Birth Date...")) {
 				txt.setText("Enter Birth Date...");
 				txt.setForeground(Color.RED);
-				addStudentdialog.getInstance().setFalse(2);
+				editStudentdialog.getInstance().setFalse(2);
 			} else {
 				txt.setForeground(Color.BLACK);
 				String[] txt1 = txt.getText().split("\\W+",3);
 				if (txt1.length != 3) {
-					addStudentdialog.getInstance().setFalse(2);
-					JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Format of date: YYYY.MM.DD","Wrong Format of Birth Date",0);
+					editStudentdialog.getInstance().setFalse(2);
+					JOptionPane.showMessageDialog(editStudentdialog.getInstance(), "Format of date: YYYY.MM.DD","Wrong Format of Birth Date",0);
 					txt.setText("Enter Birth Date...");
 					txt.setForeground(Color.RED);
 					return;
 				}
-				addStudentdialog.getInstance().setBirthDate(LocalDate.of(Integer.parseInt(txt1[0]), Integer.parseInt(txt1[1]), Integer.parseInt(txt1[2])));
-				addStudentdialog.getInstance().setTrue(2);
+				editStudentdialog.getInstance().setBirthDate(LocalDate.of(Integer.parseInt(txt1[0]), Integer.parseInt(txt1[1]), Integer.parseInt(txt1[2])));
+				editStudentdialog.getInstance().setTrue(2);
 			}
 		}
 		
@@ -77,20 +74,20 @@ public class FocusListener1 implements FocusListener {
 			if (txt.getText().trim().equals("") || txt.getText().trim().equals("Enter Address...")) {
 				txt.setText("Enter Address...");
 				txt.setForeground(Color.RED);
-				addStudentdialog.getInstance().setFalse(3);
+				editStudentdialog.getInstance().setFalse(3);
 			} else {
 				txt.setForeground(Color.BLACK);
-				String[] txt1 = txt.getText().split(" ",4);
+				String[] txt1 = txt.getText().split(",",4);
 				if (txt1.length != 4) {
-					addStudentdialog.getInstance().setFalse(3);
-					JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Format of Address: Street Number City Country","Wrong Format of Address",0);
+					editStudentdialog.getInstance().setFalse(3);
+					JOptionPane.showMessageDialog(editStudentdialog.getInstance(), "Format of Address: Street, Number, City, Country","Wrong Format of Address",0);
 					txt.setText("Enter Address...");
 					txt.setForeground(Color.RED);
 					return;
 				}
 				Address a = new Address(txt1[0],txt1[1],txt1[2],txt1[3]);
-				addStudentdialog.getInstance().setAddress(a);
-				addStudentdialog.getInstance().setTrue(3);
+				editStudentdialog.getInstance().setAddress(a);
+				editStudentdialog.getInstance().setTrue(3);
 			}
 		}
 		
@@ -98,11 +95,11 @@ public class FocusListener1 implements FocusListener {
 			if (txt.getText().trim().equals("") || txt.getText().trim().equals("Enter Contact Phone...")) {
 				txt.setText("Enter Contact Phone...");
 				txt.setForeground(Color.RED);
-				addStudentdialog.getInstance().setFalse(4);
+				editStudentdialog.getInstance().setFalse(4);
 			} else {
 				txt.setForeground(Color.BLACK);
-				addStudentdialog.getInstance().setContactPhone(txt.getText().trim());
-				addStudentdialog.getInstance().setTrue(4);
+				editStudentdialog.getInstance().setContactPhone(txt.getText().trim());
+				editStudentdialog.getInstance().setTrue(4);
 			}
 		}
 		
@@ -110,11 +107,11 @@ public class FocusListener1 implements FocusListener {
 			if (txt.getText().trim().equals("") || txt.getText().trim().equals("Enter E-mail...")) {
 				txt.setText("Enter E-mail...");
 				txt.setForeground(Color.RED);
-				addStudentdialog.getInstance().setFalse(5);
+				editStudentdialog.getInstance().setFalse(5);
 			} else {
 				txt.setForeground(Color.BLACK);
-				addStudentdialog.getInstance().seteMail(txt.getText().trim());
-				addStudentdialog.getInstance().setTrue(5);
+				editStudentdialog.getInstance().seteMail(txt.getText().trim());
+				editStudentdialog.getInstance().setTrue(5);
 			}
 		}
 		
@@ -122,11 +119,11 @@ public class FocusListener1 implements FocusListener {
 			if (txt.getText().trim().equals("") || txt.getText().trim().equals("Enter Index...")) {
 				txt.setText("Enter Index...");
 				txt.setForeground(Color.RED);
-				addStudentdialog.getInstance().setFalse(6);
+				editStudentdialog.getInstance().setFalse(6);
 			} else {
 				txt.setForeground(Color.BLACK);
-				addStudentdialog.getInstance().setIndex(txt.getText().trim());
-				addStudentdialog.getInstance().setTrue(6);
+				editStudentdialog.getInstance().setIndex(txt.getText().trim());
+				editStudentdialog.getInstance().setTrue(6);
 			}
 		}
 		
@@ -134,19 +131,19 @@ public class FocusListener1 implements FocusListener {
 			if (txt.getText().trim().equals("") || txt.getText().trim().equals("Enter Year of enrollment...")) {
 				txt.setText("Enter  Year of enrollment...");
 				txt.setForeground(Color.RED);
-				addStudentdialog.getInstance().setFalse(7);
+				editStudentdialog.getInstance().setFalse(7);
 			} else {
 				txt.setForeground(Color.BLACK);
-				addStudentdialog.getInstance().setYearOfEnrollment(Integer.parseInt(txt.getText().trim()));
-				addStudentdialog.getInstance().setTrue(7);
+				editStudentdialog.getInstance().setYearOfEnrollment(Integer.parseInt(txt.getText().trim()));
+				editStudentdialog.getInstance().setTrue(7);
 			}
 		}
 		
-
+		if(editStudentdialog.getInstance().checkB())  editStudentdialog.getInstance().setconfT();
+		else editStudentdialog.getInstance().setconfF();
 		
 		
 
 	}
 
 }
-

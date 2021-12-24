@@ -1,4 +1,4 @@
-package tables;
+package view;
 
 import javax.swing.table.AbstractTableModel;
 

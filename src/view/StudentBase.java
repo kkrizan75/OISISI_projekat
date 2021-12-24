@@ -1,4 +1,4 @@
-package tables;
+package view;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -7,7 +7,6 @@ import java.util.List;
 import Model.Address;
 import Model.Student;
 import Model.Student.Status_enum;
-import dialogs.editStudentdialog;
 
 public class StudentBase {
 	private static StudentBase instance = null;
@@ -129,7 +128,8 @@ public class StudentBase {
 	public void izmeniStudenta() {
 		
 		for (Student Student : Studenti) {
-			if (Student.getIndex().equals(editStudentdialog.getInstance().getIndex())) {
+			if (Student.getIndex().equals(editStudentdialog.getInstance().getoldIND())) {
+				Student.setIndex(editStudentdialog.getInstance().getIndex());
 				Student.setname(editStudentdialog.getInstance().getName());
 				Student.setSurname(editStudentdialog.getInstance().getSurname());
 				Student.setStatus(editStudentdialog.getInstance().getStatus());

@@ -1,4 +1,4 @@
-package dialogs;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,9 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Listeners.ActionListener1;
-import Listeners.FocusListener1;
-import Listeners.FocusListener2;
 import Model.Address;
 import Model.Student.Status_enum;
 import controller.StudentsController;
@@ -30,7 +27,9 @@ public class addStudentdialog extends JDialog{
 		private static final long serialVersionUID = 3591599721565020284L;
 		
 		private boolean[] conf = new boolean[8];
-
+		
+		private JButton ConfirmB = new JButton();
+		
 		private String Name;
 		private String Surname;
 		private LocalDate birthDate;
@@ -44,6 +43,21 @@ public class addStudentdialog extends JDialog{
 		
 		private static addStudentdialog instance = null;
 		
+		private void restart() {
+			for (boolean c : conf) {
+				c = false;
+			}
+			this.setName("");
+			this.setSurname("");
+			this.setContactPhone("");
+			this.seteMail("");
+			this.setIndex("");
+			this.setAddress(null);
+			this.setBirthDate(null);
+			this.setYearOfEnrollment(-1);
+			ConfirmB.setEnabled(false);
+		}
+		
 		private void setconfF() {
 			for (boolean c : conf) {
 				c = false;
@@ -56,7 +70,18 @@ public class addStudentdialog extends JDialog{
 			this.setAddress(null);
 			this.setBirthDate(null);
 			this.setYearOfEnrollment(-1);
-			
+			ConfirmB.setBackground(Color.GRAY);
+			ConfirmB.setPreferredSize(new Dimension(150,40));
+			ConfirmB.setText("Confirm");
+			ConfirmB.addActionListener(new ActionListener3());
+			ConfirmB.setEnabled(false);
+		}
+		
+		public void setConfF() {
+			ConfirmB.setEnabled(false);
+		}
+		public void setConfT() {
+			ConfirmB.setEnabled(true);
 		}
 		
 		public void setTrue(int i) {
@@ -101,16 +126,22 @@ public class addStudentdialog extends JDialog{
 
 		}
 		
+		public boolean checkConfBTN() {
+			return cmpEmp(getInstance().getName()) && cmpEmp(getInstance().getSurname()) && cmpEmp(getInstance().getContactPhone()) && 
+					cmpEmp(getInstance().geteMail()) && cmpEmp(getInstance().getIndex()) && 
+					!(getInstance().getAddress() == null) && !(getInstance().getBirthDate()==null) 
+					&& !(getInstance().getYearOfEnrollment() == -1) && getInstance().checkB();
+		}
+		
 		
 		public class ActionListener3 implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (cmpEmp(getInstance().getName()) && cmpEmp(getInstance().getSurname()) && cmpEmp(getInstance().getContactPhone()) && 
-						cmpEmp(getInstance().geteMail()) && cmpEmp(getInstance().getIndex()) && 
-						!(getInstance().getAddress() == null) && !(getInstance().getBirthDate()==null) 
-						&& !(getInstance().getYearOfEnrollment() == -1) && getInstance().checkB()) 
+				if (checkConfBTN()) {
 							StudentsController.getInstance().addStudent();
+							getInstance().restart();
+						}
 				else {
 					JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Blanks cannot be empty.");
 				}
@@ -231,16 +262,7 @@ public class addStudentdialog extends JDialog{
 			cS.addItem("S");
 			cS.addItem("B");
 			cS.addFocusListener(new  FocusListener2());
-			panStatus.add(cS);
-			
-			
-			
-			JButton ConfirmB = new JButton();
-			ConfirmB.setBackground(Color.GRAY);
-			ConfirmB.setPreferredSize(new Dimension(150,40));
-			ConfirmB.setText("Confirm");
-			ConfirmB.addActionListener(new ActionListener3());
-			
+			panStatus.add(cS);	
 			
 			JButton CancelB = new JButton();
 			CancelB.setBackground(Color.GRAY);
@@ -249,7 +271,7 @@ public class addStudentdialog extends JDialog{
 			CancelB.addActionListener(new ActionListener2());
 			
 			JPanel panConfCanc = new JPanel(new FlowLayout(FlowLayout.CENTER));
-			panConfCanc.add(ConfirmB);
+			panConfCanc.add(getInstance().ConfirmB);
 			panConfCanc.add(CancelB);
 			
 			
