@@ -1,4 +1,4 @@
-package GUI;
+package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,10 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
-
-import Listeners.ActionListener1;
-import Listeners.DeleteActionListener;
-import Listeners.EditActionListener;
 
 public class Toolbar extends JToolBar {
 	

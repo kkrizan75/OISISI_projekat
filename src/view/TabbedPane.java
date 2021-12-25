@@ -1,4 +1,4 @@
-package GUI;
+package view;
 
 import java.awt.Color;
 
@@ -6,8 +6,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-
-import tables.StudentTable;
 
 public class TabbedPane extends JTabbedPane {
 	

@@ -1,10 +1,9 @@
-package Listeners;
+package view;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 import javax.swing.JComboBox;
-import dialogs.addStudentdialog;
 
 public class FocusListener2 implements FocusListener{
 	

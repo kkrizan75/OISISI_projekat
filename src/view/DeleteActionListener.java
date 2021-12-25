@@ -1,11 +1,9 @@
-package Listeners;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import GUI.TabbedPane;
 import controller.StudentsController;
-import tables.StudentTable;
 
 public class DeleteActionListener implements ActionListener {
 	

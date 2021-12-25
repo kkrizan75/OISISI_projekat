@@ -7,7 +7,7 @@ public class Grade {
 	private Student student;
 	private Subject subject;
 	private int grade;
-	private LocalDate exam_date;
+	private LocalDate examDate;
 	
 	
 	public Grade(Student student, Subject subject, int grade, LocalDate exam) {
@@ -18,7 +18,7 @@ public class Grade {
 			this.grade = grade;
 			//("grade cannot be less than 6 or more than 10");
 		}
-		this.exam_date = exam;
+		this.examDate = exam;
 	}
 	
 	public Student getStudent() {
@@ -43,10 +43,10 @@ public class Grade {
 		}
 	}
 	public LocalDate getExam() {
-		return exam_date;
+		return examDate;
 	}
 	public void setExam(LocalDate exam) {
-		this.exam_date = exam;
+		this.examDate = exam;
 	}
 	
 	

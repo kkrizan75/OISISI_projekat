@@ -1,10 +1,8 @@
-package GUI;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -39,7 +37,6 @@ public class StatusBar extends JPanel {
         timerThread.start();
         
         add(Box.createHorizontalGlue());
-		
 		JPanel rightLabel = new JPanel();
 		
 		rightLabel.add(timel);

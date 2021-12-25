@@ -1,13 +1,9 @@
-package Listeners;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import GUI.Main_Frame;
-import GUI.TabbedPane;
 import Model.Student;
-import dialogs.addStudentdialog;
-import tables.StudentBase;
 
 public class ActionListener1 implements ActionListener {
 	
