@@ -194,18 +194,15 @@ public class EditProfessorsListener extends EditFocusListener{
 				EditProfessorsDialog.getInstance().setDisabled();
 			} else {
 				txt.setBorder(new LineBorder(Color.green,1));
-				if(ProfessorsController.getInstance().findProfessorByID(txt.getText()) != null) {
-					if(!ProfessorsController.getInstance().findProfessorByID(txt.getText()).getID_number().equals(EditProfessorsDialog.getInstance().getCurrentID()))
-					JOptionPane.showMessageDialog(EditProfessorsDialog.getInstance(), "Professor with this ID already exists!", "",0);;
-				}
 				EditProfessorsDialog.getInstance().setId(txt.getText().trim());
 				EditProfessorsDialog.getInstance().setCheck(8, true);
 				EditProfessorsDialog.getInstance().errorMsgLbl.get(8).setText("");
 				if(EditProfessorsDialog.getInstance().getCheck()) 
 					EditProfessorsDialog.getInstance().setEnabled();
+
 				}
-			}
-		
+			
+		}
 		if (txt.getName().equals("txtYexp")) {
 			if (txt.getText().equals("") || !checkData.checkYExp(txt.getText())) {
 				txt.setBorder(new LineBorder(Color.red,1));
