@@ -192,18 +192,25 @@ public class ProfessorListener implements FocusListener {
 				AddProfessorsDialog.getInstance().setCheck(8, false);
 				AddProfessorsDialog.getInstance().errorMsgLbl.get(8).setText(errorMessages[8]);
 				AddProfessorsDialog.getInstance().setDisabled();
-			} else {
-				txt.setBorder(new LineBorder(Color.green,1));
+			}else {
+				
 				if(ProfessorsController.getInstance().findProfessorByID(txt.getText()) != null) {
-					JOptionPane.showMessageDialog(AddProfessorsDialog.getInstance(), "Professor with this ID already exists!", "",0);;
+					JOptionPane.showMessageDialog(EditProfessorsDialog.getInstance(), "Professor with this ID already exists!", "",0);
+					EditProfessorsDialog.getInstance().setCheck(8, false);
+					EditProfessorsDialog.getInstance().errorMsgLbl.get(8).setText(errorMessages[8]);
+					EditProfessorsDialog.getInstance().setDisabled();
+					txt.setBorder(new LineBorder(Color.red,1));
+					return;
 				}
+				txt.setBorder(new LineBorder(Color.green,1));
 				AddProfessorsDialog.getInstance().setId(txt.getText().trim());
 				AddProfessorsDialog.getInstance().setCheck(8, true);
 				AddProfessorsDialog.getInstance().errorMsgLbl.get(8).setText("");
 				if(AddProfessorsDialog.getInstance().getCheck()) 
 					AddProfessorsDialog.getInstance().setEnabled();
-				}
+				} 
 			}
+			
 		
 		if (txt.getName().equals("txtYexp")) {
 			if (txt.getText().equals("") || !checkData.checkYExp(txt.getText())) {
