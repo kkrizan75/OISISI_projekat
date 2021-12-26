@@ -20,7 +20,8 @@ public class Toolbar extends JToolBar {
 	public Toolbar() {
 
 		super(SwingConstants.HORIZONTAL);
-		JButton btnNew = new JButton();
+		MyAbstractAction aNew = new MyAbstractAction("new");
+		JButton btnNew = new JButton(aNew);
 		btnNew.setToolTipText("New");
 		btnNew.setIcon(new ImageIcon("images\\addentity.png"));
 		btnNew.setBackground(Color.WHITE);
@@ -29,7 +30,8 @@ public class Toolbar extends JToolBar {
 		btnNew.addActionListener(new ActionListener1());
 		addSeparator();
 
-		JButton btnEdit = new JButton();
+		MyAbstractAction aEdit = new MyAbstractAction("edit");
+		JButton btnEdit = new JButton(aEdit);
 		btnEdit.setToolTipText("Edit");
 		btnEdit.setIcon(new ImageIcon("images\\edit2.png"));
 		btnEdit.setBackground(Color.WHITE);
@@ -39,7 +41,8 @@ public class Toolbar extends JToolBar {
 
 		addSeparator();
 		
-		JButton btnDelete = new JButton();
+		MyAbstractAction aDelete = new MyAbstractAction("delete");
+		JButton btnDelete = new JButton(aDelete);
 		btnDelete.setToolTipText("Delete");
 		btnDelete.setIcon(new ImageIcon("images\\erase.png"));
 		btnDelete.setBackground(Color.WHITE);

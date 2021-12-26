@@ -17,21 +17,21 @@ public class Professor {
 	private int years_of_work_exp;
 	private Vector<Subject> list_of_subjects = new Vector<Subject>();
 	
-	public Professor(String surname, String name, LocalDate birth_date, Address address_of_residence,
-			String contact_phone, String e_mail, Address office_address, String iD_number, String title,
-			int years_of_work_exp, Vector<Subject> list_of_subjects) {
+	public Professor(String name, String surname, String title,String eMail ,
+			String contactPhone,Address addressOfResidence , Address officeAddress, String idNumber, LocalDate birthDate,
+			int yearsOfWorkingExp, Vector<Subject> listOfSubjects) {
 		super();
 		this.surname = surname;
 		this.name = name;
-		this.birth_date = birth_date;
-		this.address_of_residence = address_of_residence;
-		this.contact_phone = contact_phone;
-		this.e_mail = e_mail;
-		this.office_address = office_address;
-		ID_number = iD_number;
+		this.birth_date = birthDate;
+		this.address_of_residence = addressOfResidence;
+		this.contact_phone = contactPhone;
+		this.e_mail = eMail;
+		this.office_address = officeAddress;
+		ID_number = idNumber;
 		this.title = title;
-		this.years_of_work_exp = years_of_work_exp;
-		this.list_of_subjects = list_of_subjects;
+		this.years_of_work_exp = yearsOfWorkingExp;
+		this.list_of_subjects = listOfSubjects;
 	}
 
 	public String getSurname() {
