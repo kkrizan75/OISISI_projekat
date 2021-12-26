@@ -195,6 +195,7 @@ public class EditProfessorsListener extends EditFocusListener{
 			} else {
 				txt.setBorder(new LineBorder(Color.green,1));
 				if(ProfessorsController.getInstance().findProfessorByID(txt.getText()) != null) {
+					if(!ProfessorsController.getInstance().findProfessorByID(txt.getText()).getID_number().equals(EditProfessorsDialog.getInstance().getCurrentID()))
 					JOptionPane.showMessageDialog(EditProfessorsDialog.getInstance(), "Professor with this ID already exists!", "",0);;
 				}
 				EditProfessorsDialog.getInstance().setId(txt.getText().trim());
