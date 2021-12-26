@@ -3,9 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
@@ -28,7 +26,7 @@ public class EditProfessorsListener extends EditFocusListener{
 		"INVALID SURNAME!",
 		"INVALID BIRTH DATE! - DATE SHOULD BE IN YYYY-MM-DD FORMAT",
 		"INVALID EMAIL!",
-		"INVALID ADDRESS OF RESIDENCE!",
+		"INVALID ADDRESS! FORMAT OF ADDRESS: STREET, NUMBER, CITY, COUNTRY",
 		"INVALID PHONE NUMBER!",
 		"INVALID OFFICE ADDRESS!", 
 		"INVALID TITLE!",

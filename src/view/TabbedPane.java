@@ -51,7 +51,7 @@ public class TabbedPane extends JTabbedPane {
 		addChangeListener(cL);
 		addTab("Students",new JScrollPane(StudentTable.getInstance()));
 		addTab("Professors", new JScrollPane(ProfessorsTable.getInstance()));
-		addTab("Subjects", null);
+		addTab("Subjects", new JScrollPane(SubjectsTable.getInstance()));
 		this.setBackground(new Color(255,255,255));
 		
 	

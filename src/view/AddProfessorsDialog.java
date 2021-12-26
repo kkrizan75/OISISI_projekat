@@ -15,24 +15,27 @@ import java.awt.event.WindowListener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.event.WindowEvent;
+
 
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import view.Main_Frame;
-import view.ProfessorListener;
+
 import Model.Address;
 import controller.ProfessorsController;
 
 public class AddProfessorsDialog extends JDialog{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name;
 	private String surname;
 	private LocalDate birthDate;
