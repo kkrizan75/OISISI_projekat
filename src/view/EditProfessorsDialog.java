@@ -19,6 +19,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -132,6 +133,7 @@ public class EditProfessorsDialog extends JDialog{
 		}
 		
 		
+		
 		confirm = new JButton();
 		confirm.setBackground(Color.cyan);
 		confirm.setPreferredSize(new Dimension(100,30));
@@ -168,10 +170,19 @@ public class EditProfessorsDialog extends JDialog{
 		panbuttons.add(Cancel);
 		boxC.add(panbuttons);
 		
-		add(boxC, BorderLayout.NORTH);
+		JTabbedPane tp = new JTabbedPane();
+		tp.add("Information", boxC);
+		tp.add("Subjects", null);
+		JPanel dialogPanel = new JPanel();
+		dialogPanel.setBackground(new Color(255,255,255));
+		dialogPanel.setLayout(new BorderLayout());
+		dialogPanel.add(tp,BorderLayout.CENTER);
+		add(dialogPanel);
 		Dimension d = kit.getScreenSize();
 		setSize(3*d.width/12, 8* d.height/16);
 		setLocationRelativeTo(null);
+		
+		
 		
 		addWindowListener(new WindowAdapter() {
 			@Override

@@ -11,7 +11,7 @@ import javax.swing.border.LineBorder;
 
 import Model.Address;
 import controller.ProfessorsController;
-import view.AddProfessorsDialog;
+
 
 
 public class ProfessorListener implements FocusListener {
@@ -25,7 +25,7 @@ public class ProfessorListener implements FocusListener {
 			"INVALID SURNAME!",
 			"INVALID BIRTH DATE! - DATE SHOULD BE IN YYYY-MM-DD FORMAT",
 			"INVALID EMAIL!",
-			"INVALID ADDRESS OF RESIDENCE!",
+			"INVALID ADDRESS! FORMAT OF ADDRESS: STREET, NUMBER, CITY, COUNTRY",
 			"INVALID PHONE NUMBER!",
 			"INVALID OFFICE ADDRESS!", 
 			"INVALID TITLE!",

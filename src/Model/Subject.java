@@ -2,12 +2,12 @@ package Model;
 
 import java.util.Vector;
 
-import Model.Subject.Semester_enum;
+
 
 public class Subject {
 	
-public enum Semester_enum{LETNJI,ZIMSKI};
-	
+	public enum Semester_enum{S,W};
+
 	private String subject_iD;
 	private String subject_name;
 	private Semester_enum semester;

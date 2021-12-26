@@ -6,21 +6,15 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 import view.Main_Frame;
-import view.ActionListener1;
-import view.EditActionListener;
+
 import Model.Address;
 import Model.Professor;
-import Model.Student;
 import Model.Subject;
 import view.AddProfessorsDialog;
-import view.EditProfessorsDialog;
-import view.addStudentdialog;
+
 import view.AbstractTableProfessors;
-import view.AbstractTableStudents;
 import view.ProfessorsBase;
 import view.ProfessorsTable;
-import view.StudentBase;
-import view.StudentTable;
 
 public class ProfessorsController {
 
