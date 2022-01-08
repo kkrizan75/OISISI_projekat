@@ -174,9 +174,6 @@ public class EditProfessorsDialog extends JDialog{
 		JTabbedPane tp = new JTabbedPane();
 		tp.add("Information", boxC);
 		JPanel subjectsinfo = new JPanel();
-		JButton but = new JButton();
-		subjectsinfo.add(but);
-		subjectsinfo.add(new JScrollPane());
 		tp.add("Subjects", subjectsinfo);
 		JPanel dialogPanel = new JPanel();
 		dialogPanel.setBackground(new Color(255,255,255));
