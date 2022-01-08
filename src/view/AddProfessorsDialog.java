@@ -170,7 +170,7 @@ public class AddProfessorsDialog extends JDialog{
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				instance.setVisible(false);
+				getInstance().setVisible(false);
 				instance = null;
 			}
 		});
