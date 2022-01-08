@@ -17,8 +17,7 @@ public class AbstractTableProfessors extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return 10;
-		//return ProfessorsBase.getInstance().getProfessors().size();
+		return ProfessorsBase.getInstance().getProfessors().size();
 	}
 	
 	@Override
