@@ -8,7 +8,9 @@ import javax.swing.JOptionPane;
 
 import Model.Address;
 import Model.Student;
+import Model.Subject;
 import Model.Student.Status_enum;
+import Model.Subject.Semester_enum;
 
 public class StudentBase {
 	private static StudentBase instance = null;
@@ -42,8 +44,10 @@ public class StudentBase {
 
 	private void initStudente() {
 		this.Studenti = new ArrayList<Student>();
-		
-		this.Studenti.add(new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B));
+		Subject s = new Subject("RA1", "Kompjuteri", Semester_enum.W, 4, null, 8, null, null );
+		Student stud = new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B);
+		stud.setUnpassed_subject(s);
+		this.Studenti.add(stud);
 
 		
 	}
@@ -122,6 +126,7 @@ public class StudentBase {
 		}
 		
 	}
+	
 
 	public void dodajStudenta(Student student) {
 		this.Studenti.add(student);

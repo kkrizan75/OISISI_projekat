@@ -19,6 +19,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -172,7 +173,8 @@ public class EditProfessorsDialog extends JDialog{
 		
 		JTabbedPane tp = new JTabbedPane();
 		tp.add("Information", boxC);
-		tp.add("Subjects", null);
+		JPanel subjectsinfo = new JPanel();
+		tp.add("Subjects", subjectsinfo);
 		JPanel dialogPanel = new JPanel();
 		dialogPanel.setBackground(new Color(255,255,255));
 		dialogPanel.setLayout(new BorderLayout());
