@@ -3,7 +3,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Model.Student;
+
 
 public class ActionListener1 implements ActionListener {
 	
@@ -15,6 +15,10 @@ public class ActionListener1 implements ActionListener {
 		aSd = new addStudentdialog(Main_Frame.getInstance(),"Add Student", true);
 		aSd.setVisible(true);
 		}
+		if (TabbedPane.getInstance().getSelectedIndex() == 1) {
+			AddProfessorsDialog.getInstance().setVisible(true);
+		}
+
 	}
 	
 	public static addStudentdialog getaSd() {

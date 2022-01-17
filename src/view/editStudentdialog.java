@@ -19,6 +19,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
@@ -27,7 +28,7 @@ import Model.Grade;
 import Model.Student;
 import Model.Student.Status_enum;
 import controller.StudentsController;
-import view.addStudentdialog.ActionListener3;
+
 
 public class editStudentdialog extends JDialog{
 	private static final long serialVersionUID = 3591599721565020284L;
@@ -153,7 +154,7 @@ public class editStudentdialog extends JDialog{
 			if (getInstance().checkB()) 
 				StudentsController.getInstance().editStudent();
 			else {
-				JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Blanks cannot be empty.");
+				JOptionPane.showMessageDialog(editStudentdialog.getInstance(), "Error!");
 			}
 		}
 	}
@@ -325,8 +326,28 @@ public class editStudentdialog extends JDialog{
 		JPanel panTest = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		ArrayList<Grade> Passed = StudentsController.getInstance().findStudentByInD(getInstance().getIndex()).getpassedSubjects();
 		
+		JPanel failedSubjects = new JPanel();
+		JButton pass = new JButton();
+		pass.setBackground(Color.LIGHT_GRAY);
+		pass.setPreferredSize(new Dimension(100,30));
+		pass.setText("Pass");
+		
+		JButton remove = new JButton();
+		remove.setBackground(Color.LIGHT_GRAY);
+		remove.setPreferredSize(new Dimension(100,30));
+		remove.setText("Remove");
+		
+		JButton add = new JButton();
+		add.setBackground(Color.LIGHT_GRAY);
+		add.setPreferredSize(new Dimension(100,30));
+		add.setText("Add");
+		
+		failedSubjects.add(add);
+		failedSubjects.add(remove);
+		failedSubjects.add(pass);
+		failedSubjects.add(new JScrollPane(FailedSubjectsTable.getInstance()));
 		dT.add("Passed Subjects", panTest);
-		dT.add("Failed Subjects", null);
+		dT.add("Failed Subjects", failedSubjects);
 		JPanel defaultPanel = new JPanel();
 		defaultPanel.setBackground(new Color(255,255,255));
 		defaultPanel.setLayout(new BorderLayout());

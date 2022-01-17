@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Model.Address;
+import controller.StudentsController;
 
 public class FocusListener1 implements FocusListener {
 
@@ -124,9 +125,15 @@ public class FocusListener1 implements FocusListener {
 				txt.setForeground(Color.RED);
 				addStudentdialog.getInstance().setFalse(6);
 			} else {
+				if (StudentsController.getInstance().contains(txt.getText().trim())) {
+					addStudentdialog.getInstance().setFalse(6);
+					JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Student with that index already exists!","Existing student with that ID",1);
+				}
+				else {
 				txt.setForeground(Color.BLACK);
 				addStudentdialog.getInstance().setIndex(txt.getText().trim());
 				addStudentdialog.getInstance().setTrue(6);
+				}
 			}
 		}
 		

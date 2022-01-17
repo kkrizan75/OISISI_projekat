@@ -143,7 +143,7 @@ public class addStudentdialog extends JDialog{
 							getInstance().restart();
 						}
 				else {
-					JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Blanks cannot be empty.");
+					JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Error!");
 				}
 			}
 		}

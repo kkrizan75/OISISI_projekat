@@ -21,6 +21,10 @@ private static StudentsController instance = null;
 		return instance;
 	}
 	
+	public boolean contains(String ind) {
+		return StudentBase.getInstance().contains(ind);
+	}
+	
 	public void addStudent() {
 		Student student = new Student(addStudentdialog.getInstance().getName(),addStudentdialog.getInstance().getSurname(),addStudentdialog.getInstance().getBirthDate(),
 				addStudentdialog.getInstance().getAddress(),addStudentdialog.getInstance().getContactPhone(),addStudentdialog.getInstance().geteMail(),
@@ -70,8 +74,8 @@ private static StudentsController instance = null;
 	}
 	
 	public void editStudent() {
-		EditActionListener.geteSd().setVisible(false);
 		StudentBase.getInstance().izmeniStudenta();
+		EditActionListener.geteSd().setVisible(false);
 		AbstractTableStudents model = (AbstractTableStudents) StudentTable.getInstance().getModel();
     	model.fireTableDataChanged();
 		Main_Frame.getInstance().validate();

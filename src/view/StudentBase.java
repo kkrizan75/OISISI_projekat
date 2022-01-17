@@ -4,9 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Model.Address;
 import Model.Student;
+import Model.Subject;
 import Model.Student.Status_enum;
+import Model.Subject.Semester_enum;
 
 public class StudentBase {
 	private static StudentBase instance = null;
@@ -40,10 +44,21 @@ public class StudentBase {
 
 	private void initStudente() {
 		this.Studenti = new ArrayList<Student>();
-		
-		this.Studenti.add(new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B));
+		Subject s = new Subject("RA1", "Kompjuteri", Semester_enum.W, 4, null, 8, null, null );
+		Student stud = new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B);
+		stud.setUnpassed_subject(s);
+		this.Studenti.add(stud);
 
 		
+	}
+	
+	public boolean contains(String ind) {
+		for(Student s : Studenti) {
+			if(s.getIndex().equals(ind)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public List<Student> getStudenti() {
@@ -111,6 +126,7 @@ public class StudentBase {
 		}
 		
 	}
+	
 
 	public void dodajStudenta(Student student) {
 		this.Studenti.add(student);
@@ -126,7 +142,7 @@ public class StudentBase {
 	}
 
 	public void izmeniStudenta() {
-		
+			
 		for (Student Student : Studenti) {
 			if (Student.getIndex().equals(editStudentdialog.getInstance().getoldIND())) {
 				Student.setIndex(editStudentdialog.getInstance().getIndex());
@@ -140,5 +156,6 @@ public class StudentBase {
 				Student.setyearOfEnrollment(editStudentdialog.getInstance().getYearOfEnrollment());
 			}
 		}
+		//return true;
 	}
 }

@@ -3,6 +3,7 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import controller.ProfessorsController;
 import controller.StudentsController;
 
 public class EditActionListener implements ActionListener {
@@ -13,6 +14,10 @@ public class EditActionListener implements ActionListener {
 		if (StudentsController.getInstance().checkRow(StudentTable.getInstance().getSelectedRow())) return;
 		eSd = new editStudentdialog(Main_Frame.getInstance(),"Edit Student",true);
 		eSd.setVisible(true);
+		}
+		if (TabbedPane.getInstance().getSelectedIndex() == 1) {
+			if (!ProfessorsController.getInstance().checkRow(ProfessorsTable.getInstance().getSelectedRow()))
+				EditProfessorsDialog.getInstance().setVisible(true);
 		}
 	}
 	
