@@ -153,7 +153,7 @@ public class editStudentdialog extends JDialog{
 			if (getInstance().checkB()) 
 				StudentsController.getInstance().editStudent();
 			else {
-				JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "Blanks cannot be empty.");
+				JOptionPane.showMessageDialog(editStudentdialog.getInstance(), "Error!");
 			}
 		}
 	}
