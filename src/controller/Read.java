@@ -10,20 +10,37 @@ import java.util.HashMap;
 
 import Model.Address;
 import Model.Department;
+import Model.Grade;
 import Model.Professor;
 import Model.Student;
 import Model.Student.Status_enum;
+import Model.Subject;
+import Model.Subject.Semester_enum;
 import view.ProfessorsBase;
 import view.StudentBase;
+import view.SubjectsBase;
 
 public class Read {
 	
-	public static void read() throws IOException {
+	private HashMap<Integer,Address> hmA = new HashMap<Integer,Address>();
+	private HashMap<Department,Integer> hmD = new HashMap<Department,Integer>();
+	private HashMap<Integer,Student> hmS = new HashMap<Integer,Student>();
+	private HashMap<Integer,Professor> hmP = new HashMap<Integer,Professor>();
+	private HashMap<Integer,Subject> hmSu = new HashMap<Integer,Subject>();
+	private HashMap<Integer,Grade> hmG = new HashMap<Integer,Grade>();
+	
+	private static Read instance= null;
+	
+	public static Read getInstance() {
+		if(instance == null) {
+			instance = new Read();
+			}
+		return instance;
+	}
+	
+	public void read() throws IOException {
 		File f = null;
-		HashMap<Integer,Address> hmA = new HashMap<Integer,Address>();
-		HashMap<Department,Integer> hmD = new HashMap<Department,Integer>();
-		HashMap<Integer,Student> hmS = new HashMap<Integer,Student>();
-		HashMap<Integer,Professor> hmP = new HashMap<Integer,Professor>();
+		
 		f = new File("OSISI-BASE\\Adrese.txt");
 		BufferedReader reader;
 		reader = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
@@ -86,6 +103,54 @@ public class Read {
 				LocalDate lc = LocalDate.of(Integer.parseInt(lD[2]), Integer.parseInt(lD[1]), Integer.parseInt(lD[0]));
 				Professor p = new Professor(lineL[2],lineL[3],lineL[10],lineL[7],lineL[6],a,a2,lineL[1],lc,Integer.parseInt(lineL[9]));
 				ProfessorsBase.getInstance().addProfessor(p);
+				hmP.put(Integer.parseInt(lineL[0]), p);
+			}
+		} finally {
+		reader.close();
+		}
+		
+		f = new File("OSISI-BASE\\Predmeti.txt");
+		reader = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF8"));
+		try {
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] lineL = line.split("\t+",12);
+				Semester_enum se = Semester_enum.S;
+				if(lineL[6].equals("ZIMSKI")) se = Semester_enum.W;
+				Professor p = null;
+				if(lineL[5].equals("null"));
+				else p = hmP.get(Integer.parseInt(lineL[5]));
+				Subject s = new Subject(lineL[1],lineL[2],se,Integer.parseInt(lineL[3]),p,Integer.parseInt(lineL[4]),null,null);
+				SubjectsBase.getInstance().addSubject(s);
+				hmSu.put(Integer.parseInt(lineL[0]), s);
+			}
+		} finally {
+		reader.close();
+		}
+		
+		f = new File("OSISI-BASE\\NepolozeniP.txt");
+		reader = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF8"));
+		try {
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] lineL = line.split("\t+",12);
+				StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()).setUnpassed_subject(SubjectsBase.getInstance().findSubject(hmSu.get(Integer.parseInt(lineL[1])).getId()));
+			}
+		} finally {
+		reader.close();
+		}
+		
+		f = new File("OSISI-BASE\\Ocjene.txt");
+		reader = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF8"));
+		try {
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] lineL = line.split("\t+",12);
+				String[] lD = lineL[3].split("\\.",4);
+				LocalDate lc = LocalDate.of(Integer.parseInt(lD[2]), Integer.parseInt(lD[1]), Integer.parseInt(lD[0]));
+				Grade g = new Grade(StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()),SubjectsBase.getInstance().findSubject(hmSu.get(Integer.parseInt(lineL[1])).getId())
+						,Integer.parseInt(lineL[2]),lc);
+				StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()).addPassedSubject(g);
 			}
 		} finally {
 		reader.close();

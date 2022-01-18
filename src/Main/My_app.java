@@ -9,7 +9,7 @@ public class My_app {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
-		Read.read();
+		Read.getInstance().read();
 		Main_Frame mf = Main_Frame.getInstance();
 		mf.setVisible(true);
 	}

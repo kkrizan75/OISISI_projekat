@@ -59,6 +59,15 @@ public class SubjectsBase {
 		return 5;
 	}
 	
+	public Subject findSubject(String id) {
+		for (Subject s: subjects) {
+			if(s.getId().equals(id)) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
 	public boolean contains(String s) {
 		for(Subject su:subjects) {
 			if(s.equals(su.getId())) return true;

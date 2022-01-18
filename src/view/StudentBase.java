@@ -67,6 +67,13 @@ public class StudentBase {
 	public List<Student> getStudenti() {
 		return Studenti;
 	}
+	
+	public Student findStudent(String xd) {
+		for(Student s : Studenti) {
+			if(s.getIndex().equals(xd)) return s;
+		}
+		return null;
+	}
 
 	public void setStudenti(List<Student> Studenti) {
 		this.Studenti = Studenti;
