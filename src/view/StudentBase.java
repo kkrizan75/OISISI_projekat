@@ -4,12 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JOptionPane;
-
 import Model.Address;
+import Model.Grade;
 import Model.Student;
-import Model.Subject;
 import Model.Student.Status_enum;
+import Model.Subject;
 import Model.Subject.Semester_enum;
 
 public class StudentBase {
@@ -46,7 +45,11 @@ public class StudentBase {
 		this.Studenti = new ArrayList<Student>();
 		Subject s = new Subject("RA1", "Kompjuteri", Semester_enum.W, 4, null, 8, null, null );
 		Student stud = new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B);
+		LocalDate ld = LocalDate.of(2000,2,2);
+		Grade g = new Grade(stud,s,6,ld);
 		stud.setUnpassed_subject(s);
+		stud.addPassedSubject(g);
+		
 		this.Studenti.add(stud);
 
 		

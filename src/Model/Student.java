@@ -130,9 +130,8 @@ public class Student {
 	public ArrayList<Grade> getpassedSubjects() {
 		return passedSubjects; 
 	}
-
-	public void setpassedSubjects(Grade passed) {
-		passedSubjects.add(passed); 
+	public void addPassedSubject(Grade grade) {
+		passedSubjects.add(grade);
 	}
 	
 }

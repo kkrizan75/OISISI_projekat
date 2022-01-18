@@ -134,7 +134,7 @@ public class AddProfessorsDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				ProfessorsController.getInstance().addProfessor(name, surname, title, eMail, phoneNum, offAddress, homeAddress, id, birthDate, yExp, null);
+				ProfessorsController.getInstance().addProfessor(name, surname, title, eMail, phoneNum, offAddress, homeAddress, id, birthDate, yExp);
 				instance.setVisible(false);
 				instance = null;
 			}

@@ -10,9 +10,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -24,7 +24,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 
 import Model.Address;
-import Model.Grade;
 import Model.Student;
 import Model.Student.Status_enum;
 import controller.StudentsController;
@@ -324,8 +323,13 @@ public class editStudentdialog extends JDialog{
 		dT.add("Information", boxC);
 		
 		//JList list = new JList();
-		JPanel panTest = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		ArrayList<Grade> Passed = StudentsController.getInstance().findStudentByInD(getInstance().getIndex()).getpassedSubjects();
+		JPanel passedSubjects = new JPanel();//new FlowLayout(FlowLayout.CENTER));
+		JButton canc = new JButton();
+		canc.setBackground(Color.LIGHT_GRAY);
+		canc.setPreferredSize(new Dimension(100,30));
+		canc.setText("Deny");
+		passedSubjects.add(canc,BorderLayout.WEST);
+		passedSubjects.add(new JScrollPane(PassedSubjectsTable.getInstance()),BorderLayout.SOUTH);
 		
 		JPanel failedSubjects = new JPanel();
 		JButton pass = new JButton();
@@ -347,7 +351,7 @@ public class editStudentdialog extends JDialog{
 		failedSubjects.add(remove);
 		failedSubjects.add(pass);
 		failedSubjects.add(new JScrollPane(FailedSubjectsTable.getInstance()));
-		dT.add("Passed Subjects", panTest);
+		dT.add("Passed Subjects", passedSubjects);
 		dT.add("Failed Subjects", failedSubjects);
 		JPanel defaultPanel = new JPanel();
 		defaultPanel.setBackground(new Color(255,255,255));

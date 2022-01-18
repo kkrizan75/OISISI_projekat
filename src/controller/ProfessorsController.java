@@ -29,12 +29,12 @@ private static ProfessorsController instance = null;
 	
 	public void addProfessor(String name, String surname, String title,String eMail ,
 			String contactPhone,Address addressOfResidence , Address officeAddress, String idNumber, LocalDate birthDate,
-			int yearsOfWorkingExp, Vector<Subject> listOfSubjects) {
+			int yearsOfWorkingExp) {
 		
 		
 		Professor prof = new Professor(name, surname, title, eMail ,
 				 contactPhone, addressOfResidence ,  officeAddress,  idNumber,  birthDate,
-				 yearsOfWorkingExp, listOfSubjects);
+				 yearsOfWorkingExp);
 		
 		ProfessorsBase.getInstance().addProfessor(prof);
 		//ActionListener1.getaSd().setVisible(false);
