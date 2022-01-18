@@ -165,6 +165,7 @@ public class editStudentdialog extends JDialog{
 		Student S = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
 		getInstance().setconfF(S);
 		getInstance().setconfT();
+		
 		Dimension dim = new Dimension(200, 25);
 		JPanel panName = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblName = new JLabel("Name*:");

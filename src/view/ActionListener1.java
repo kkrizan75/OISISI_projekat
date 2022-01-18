@@ -9,6 +9,7 @@ public class ActionListener1 implements ActionListener {
 	
 
 	private static addStudentdialog aSd = null; 
+	private static addSubjectDialog aSud = null; 
 	public void actionPerformed(ActionEvent arg0) { 
 		
 		if (TabbedPane.getInstance().getSelectedIndex() == 0) {
@@ -18,11 +19,19 @@ public class ActionListener1 implements ActionListener {
 		if (TabbedPane.getInstance().getSelectedIndex() == 1) {
 			AddProfessorsDialog.getInstance().setVisible(true);
 		}
+		if (TabbedPane.getInstance().getSelectedIndex() == 2) {
+			aSud = new addSubjectDialog(Main_Frame.getInstance(),"Add Subject", true);
+			aSud.setVisible(true);
+		}
 
 	}
 	
 	public static addStudentdialog getaSd() {
 		return aSd;
+	}
+	
+	public static addSubjectDialog getaSud() {
+		return aSud;
 	}
 
 }
