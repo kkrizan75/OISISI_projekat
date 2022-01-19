@@ -8,47 +8,47 @@ public class Subject {
 	
 	public enum Semester_enum{S,W};
 
-	private String subject_iD;
-	private String subject_name;
+	private String Id;
+	private String Name;
 	private Semester_enum semester;
-	private int year_of_study;
+	private int yearOfStudy;
 	private Professor professor;
 	private int ECTS;
-	private Vector<Student> students_passed = new Vector<Student>();
-	private Vector<Student> students_failed = new Vector<Student>();
+	private Vector<Student> studentsPassed = new Vector<Student>();
+	private Vector<Student> studentsFailed = new Vector<Student>();
 	
 	
-	public Subject(String subject_iD, String subject_name, Semester_enum semester, int year_of_study,
-			Professor professor, int eCTS, Vector<Student> students_passed, Vector<Student> students_failed) {
+	public Subject(String Id, String Name, Semester_enum semester, int yearOfStudy,
+			Professor professor, int eCTS, Vector<Student> studentsPassed, Vector<Student> studentsFailed) {
 		super();
-		this.subject_iD = subject_iD;
-		this.subject_name = subject_name;
+		this.Id = Id;
+		this.Name = Name;
 		this.semester = semester;
-		this.year_of_study = year_of_study;
+		this.yearOfStudy = yearOfStudy;
 		this.professor = professor;
 		ECTS = eCTS;
-		this.students_passed = students_passed;
-		this.students_failed = students_failed;
+		this.studentsPassed = studentsPassed;
+		this.studentsFailed = studentsFailed;
 	}
 
 
-	public String getSubject_iD() {
-		return subject_iD;
+	public String getId() {
+		return Id;
 	}
 
 
-	public void setSubject_iD(String subject_iD) {
-		this.subject_iD = subject_iD;
+	public void setId(String Id) {
+		this.Id = Id;
 	}
 
 
-	public String getSubject_name() {
-		return subject_name;
+	public String getName() {
+		return Name;
 	}
 
 
-	public void setSubject_name(String subject_name) {
-		this.subject_name = subject_name;
+	public void setName(String Name) {
+		this.Name = Name;
 	}
 
 
@@ -62,13 +62,13 @@ public class Subject {
 	}
 
 
-	public int getYear_of_study() {
-		return year_of_study;
+	public int getyearOfStudy() {
+		return yearOfStudy;
 	}
 
 
-	public void setYear_of_study(int year_of_study) {
-		this.year_of_study = year_of_study;
+	public void setyearOfStudy(int yearOfStudy) {
+		this.yearOfStudy = yearOfStudy;
 	}
 
 
@@ -92,23 +92,23 @@ public class Subject {
 	}
 
 
-	public Vector<Student> getStudents_passed() {
-		return students_passed;
+	public Vector<Student> getstudentsPassed() {
+		return studentsPassed;
 	}
 
 
-	public void setStudents_passed(Vector<Student> students_passed) {
-		this.students_passed = students_passed;
+	public void setstudentsPassed(Vector<Student> studentsPassed) {
+		this.studentsPassed = studentsPassed;
 	}
 
 
-	public Vector<Student> getStudents_failed() {
-		return students_failed;
+	public Vector<Student> getstudentsFailed() {
+		return studentsFailed;
 	}
 
 
-	public void setStudents_failed(Vector<Student> students_failed) {
-		this.students_failed = students_failed;
+	public void setstudentsFailed(Vector<Student> studentsFailed) {
+		this.studentsFailed = studentsFailed;
 	}
 
 }

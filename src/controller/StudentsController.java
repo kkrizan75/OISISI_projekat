@@ -10,6 +10,7 @@ import view.Main_Frame;
 import view.StudentBase;
 import view.StudentTable;
 import view.addStudentdialog;
+import view.editStudentdialog;
 
 public class StudentsController {
 private static StudentsController instance = null;
@@ -19,6 +20,10 @@ private static StudentsController instance = null;
 			instance = new StudentsController();
 		}
 		return instance;
+	}
+	
+	public boolean contains(String ind) {
+		return StudentBase.getInstance().contains(ind);
 	}
 	
 	public void addStudent() {
@@ -63,15 +68,15 @@ private static StudentsController instance = null;
 	
 	public boolean checkRow(int rowSelectedIndex) {
 		if (rowSelectedIndex < 0 || rowSelectedIndex >= StudentBase.getInstance().getStudenti().size()) {
-			JOptionPane.showMessageDialog(addStudentdialog.getInstance(), "No row selected!","Error",2);
+			JOptionPane.showMessageDialog(editStudentdialog.getInstance(), "No row selected!","Error!",2);
 			return true;
 		}
 		return false;
 	}
 	
 	public void editStudent() {
-		EditActionListener.geteSd().setVisible(false);
 		StudentBase.getInstance().izmeniStudenta();
+		EditActionListener.geteSd().setVisible(false);
 		AbstractTableStudents model = (AbstractTableStudents) StudentTable.getInstance().getModel();
     	model.fireTableDataChanged();
 		Main_Frame.getInstance().validate();

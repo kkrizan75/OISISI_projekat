@@ -4,23 +4,22 @@ import java.util.Vector;
 
 public class Department {
 	
-	private int code;
+	private String code;
 	private String name;
 	private Professor boss;
 	private Vector<Professor> profList = new Vector<Professor>();
 	
-	public Department(int code, String name, Professor boss, Vector<Professor> prof_list) {
+	public Department(String code, String name, Professor boss) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.boss = boss;
-		this.profList = prof_list;
 	}
 	
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	public String getName() {

@@ -58,6 +58,22 @@ public class SubjectsBase {
 	public int getColumnCount() {
 		return 5;
 	}
+	
+	public Subject findSubject(String id) {
+		for (Subject s: subjects) {
+			if(s.getId().equals(id)) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	public boolean contains(String s) {
+		for(Subject su:subjects) {
+			if(s.equals(su.getId())) return true;
+		}
+		return false;
+	}
 
 	public String getColumnName(int index) {
 		return this.columns.get(index);
@@ -88,15 +104,15 @@ public class SubjectsBase {
 			Subject subject = this.subjects.get(row);
 			switch (column) {
 			case 0:
-				return subject.getSubject_iD();
+				return subject.getId();
 			case 1:
-				return subject.getSubject_name();
+				return subject.getName();
 			case 2:
 				return Integer.toString(subject.getECTS());
 			case 3:
-				return Integer.toString(subject.getYear_of_study());
+				return Integer.toString(subject.getyearOfStudy());
 			case 4:
-				if (subject.getSemester() == Semester_enum.W) return "WINTER";
+				if (subject.getSemester() == Subject.Semester_enum.W) return "WINTER";
 				else return "SUMMER";
 			default:
 				return null;
@@ -128,13 +144,13 @@ public class SubjectsBase {
 			Subject subject = failed.get(row);
 			switch (column) {
 			case 0:
-				return subject.getSubject_iD();
+				return subject.getId();
 			case 1:
-				return subject.getSubject_name();
+				return subject.getName();
 			case 2:
 				return Integer.toString(subject.getECTS());
 			case 3:
-				return Integer.toString(subject.getYear_of_study());
+				return Integer.toString(subject.getyearOfStudy());
 			case 4:
 				if (subject.getSemester() == Semester_enum.W) return "WINTER";
 				else return "SUMMER";
@@ -158,13 +174,21 @@ public class SubjectsBase {
 	}
 
 	public void editSubject() {
-		
+		for(Subject s: subjects) {
+			if(s.getId().equals(editSubjectDialog.getInstance().getoldID())) {
+				s.setId(editSubjectDialog.getInstance().getId());
+				s.setName(editSubjectDialog.getInstance().getName());
+				s.setECTS(editSubjectDialog.getInstance().getECTS());
+				s.setSemester(editSubjectDialog.getInstance().getSemester());
+				s.setyearOfStudy(editSubjectDialog.getInstance().getYearOfStudy());
+			}
+		}
 	
 	}
 	
 	public void deleteSubject(String ID) {
 		for(Subject s : subjects) {
-			if(s.getSubject_iD().equals(ID)) {
+			if(s.getId().equals(ID)) {
 				subjects.remove(s);
 				break;
 			}

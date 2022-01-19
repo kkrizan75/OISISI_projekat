@@ -19,7 +19,7 @@ public class Professor {
 	
 	public Professor(String name, String surname, String title,String eMail ,
 			String contactPhone,Address addressOfResidence , Address officeAddress, String idNumber, LocalDate birthDate,
-			int yearsOfWorkingExp, Vector<Subject> listOfSubjects) {
+			int yearsOfWorkingExp) {
 		super();
 		this.surname = surname;
 		this.name = name;
@@ -31,7 +31,6 @@ public class Professor {
 		ID_number = idNumber;
 		this.title = title;
 		this.years_of_work_exp = yearsOfWorkingExp;
-		this.list_of_subjects = listOfSubjects;
 	}
 
 	public String getSurname() {
