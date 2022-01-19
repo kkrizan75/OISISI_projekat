@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -57,6 +59,12 @@ public class Toolbar extends JToolBar {
 		JTextField searchbar = new JTextField();
 		searchbar.setPreferredSize( new Dimension(250, 30));
 		searchbar.setMaximumSize(new Dimension(250,30));
+		searchbar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ProfessorsTable.getInstance().searchProfessors(searchbar.getText());
+			}
+		});
 		add(searchbar);
 		
 		JButton btnSearch = new JButton();
@@ -64,6 +72,14 @@ public class Toolbar extends JToolBar {
 		btnSearch.setIcon(new ImageIcon("images\\search.png"));
 		btnSearch.setBackground(Color.WHITE);
 		btnSearch.setBorderPainted(false);
+		btnSearch.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (TabbedPane.getInstance().getSelectedIndex() == 1) {
+					ProfessorsTable.getInstance().searchProfessors(searchbar.getText());
+					}
+				}
+		});
 		add(btnSearch);
 		
 		

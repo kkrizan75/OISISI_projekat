@@ -16,7 +16,7 @@ public class DeleteActionListener implements ActionListener {
 			}
 			
 			if (TabbedPane.getInstance().getSelectedIndex() == 1) {
-				ProfessorsController.getInstance().deleteProfessor(ProfessorsTable.getInstance().getSelectedRow());
+				ProfessorsController.getInstance().deleteProfessor(ProfessorsTable.getInstance().getSelectedIndex());
 				}
 		}
 	
