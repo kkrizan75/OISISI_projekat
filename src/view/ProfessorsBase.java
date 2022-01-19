@@ -109,15 +109,6 @@ public class ProfessorsBase {
 														new Address("Ulica", "11", "Nis", "Srbija"),
 					"012345678", LocalDate.of(1955, 11, 11), 
 					12));
-			this.professors.add(new Professor("Marko","Markovic","Doc","prof10@gmail.com", "0601233120", new Address("Topolska", "18", "Smederevo", "Srbija"),
-					new Address("Ulica", "11", "Nis", "Srbija"),
-					"012345678", LocalDate.of(1955, 11, 11), 
-					12));
-			this.professors.add(new Professor("Nikola","Nikolic","Msc","prof2@gmail.com", "0601233120", new Address("Topolska", "18", "Smederevo", "Srbija"),
-					new Address("Ulica", "11", "Nis", "Srbija"),
-					"012345678", LocalDate.of(1955, 11, 11), 
-					12));
-
 			
 		}
 
