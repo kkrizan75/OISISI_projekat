@@ -27,7 +27,7 @@ public class Read {
 	private HashMap<Integer,Student> hmS = new HashMap<Integer,Student>();
 	private HashMap<Integer,Professor> hmP = new HashMap<Integer,Professor>();
 	private HashMap<Integer,Subject> hmSu = new HashMap<Integer,Subject>();
-	private HashMap<Integer,Grade> hmG = new HashMap<Integer,Grade>();
+	//private HashMap<Integer,Grade> hmG = new HashMap<Integer,Grade>();
 	
 	private static Read instance= null;
 	

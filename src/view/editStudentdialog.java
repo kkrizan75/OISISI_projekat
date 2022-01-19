@@ -12,7 +12,6 @@ import java.awt.event.FocusListener;
 import java.time.LocalDate;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -26,6 +25,7 @@ import javax.swing.JTextField;
 import Model.Address;
 import Model.Student;
 import Model.Student.Status_enum;
+import Model.Subject;
 import controller.StudentsController;
 
 
@@ -46,7 +46,10 @@ public class editStudentdialog extends JDialog{
 	private int yearOfEnrollment;
 	private int currentYear = 1;
 	private Status_enum Status = Status_enum.S;
-	
+	private int selectedStudent = -1;
+	private JPanel failedSubjects = new JPanel();
+	private JScrollPane jscp = new JScrollPane(FailedSubjectsTable.getInstance());
+	private boolean in = false;
 	private String oldIND;
 	
 	private static editStudentdialog instance = null;
@@ -66,10 +69,19 @@ public class editStudentdialog extends JDialog{
 		this.setCurrentYear(S.getcurrentYear());
 		this.setStatus(S.getStatus());
 		this.setoldIND((S.getIndex()));
+		this.setStu(StudentTable.getInstance().getSelectedRow());
 		ConfirmB.setBackground(Color.GRAY);
 		ConfirmB.setPreferredSize(new Dimension(150,40));
 		ConfirmB.setText("Confirm");
 		ConfirmB.addActionListener(new ActionListenerCONF());
+	}
+	
+	public void setStu(int s ) {
+		selectedStudent = s;
+	}
+	
+	public int getStu() {
+		return selectedStudent;
 	}
 	
 	public static editStudentdialog getInstance() {
@@ -331,7 +343,6 @@ public class editStudentdialog extends JDialog{
 		passedSubjects.add(canc,BorderLayout.WEST);
 		passedSubjects.add(new JScrollPane(PassedSubjectsTable.getInstance()),BorderLayout.SOUTH);
 		
-		JPanel failedSubjects = new JPanel();
 		JButton pass = new JButton();
 		pass.setBackground(Color.LIGHT_GRAY);
 		pass.setPreferredSize(new Dimension(100,30));
@@ -341,11 +352,33 @@ public class editStudentdialog extends JDialog{
 		remove.setBackground(Color.LIGHT_GRAY);
 		remove.setPreferredSize(new Dimension(100,30));
 		remove.setText("Remove");
+		remove.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(FailedSubjectsTable.getInstance().getSelectedRow() == -1 ) return;
+				Student stu = StudentBase.getInstance().findStudent(StudentsController.getInstance().findSelcetedStudent(getInstance().getStu()).getIndex());
+				Subject s = stu.getRowSub(FailedSubjectsTable.getInstance().getSelectedRow());
+				stu.removeUnpassed_subject(s.getId());
+				AbstractTableFailedSubjects model = (AbstractTableFailedSubjects) FailedSubjectsTable.getInstance().getModel();
+				model.fireTableDataChanged();
+				editStudentdialog.getInstance().validate();
+			}
+		});
 		
 		JButton add = new JButton();
 		add.setBackground(Color.LIGHT_GRAY);
 		add.setPreferredSize(new Dimension(100,30));
 		add.setText("Add");
+		add.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new addSubjecttoS(Main_Frame.getInstance(),"Add Subject",true);
+				
+			}
+			
+		});
 		
 		failedSubjects.add(add);
 		failedSubjects.add(remove);

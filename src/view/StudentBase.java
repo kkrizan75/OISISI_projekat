@@ -94,6 +94,7 @@ public class StudentBase {
 	public Student getRow(int rowIndex) {
 		return this.Studenti.get(rowIndex);
 	}
+	
 
 	public String getValueAt(int row, int column) {
 		if (row >= Studenti.size()) {

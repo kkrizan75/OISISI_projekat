@@ -42,6 +42,21 @@ public class SubjectsBase {
 	
 	}
 
+	public ArrayList<Subject> unpassedSforStudent(Student s) {
+		ArrayList<Subject> ret = new ArrayList<Subject>();
+		boolean b = true;
+		for (Subject su: subjects) {
+			b = true;
+			for(Subject su1 : s.getunpassedSubjects()) {
+				if(su.getId().equals(su1.getId())) {
+					b = false;
+					break;
+				}
+			}
+			if(b) ret.add(su);
+		}
+		return ret;
+	}
 
 	public List<Subject> getSubjects() {
 		return subjects;

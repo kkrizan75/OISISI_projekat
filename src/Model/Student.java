@@ -120,10 +120,27 @@ public class Student {
 	public void setavgGrade(float avgGrade) {
 		this.avgGrade = avgGrade;
 	}
+	
+	public Subject getRowSub(int rowIndex) {
+		return this.unpassedSubjects.get(rowIndex);
+	}
+	
 	public ArrayList<Subject> getunpassedSubjects() {
 		return unpassedSubjects;
 	}
+	
+	public void removeUnpassed_subject(String xd) {
+		for(Subject s : unpassedSubjects) {
+			if(s.getId().equals(xd)) {
+				unpassedSubjects.remove(s);
+				return;
+			}
+		}
+	}
 	public void setUnpassed_subject(Subject unpassed_subject) {
+		for(Subject s : unpassedSubjects) {
+			if(s.getId().equals(unpassed_subject.getId())) return;
+		}
 		unpassedSubjects.add(unpassed_subject);
 	}
 
