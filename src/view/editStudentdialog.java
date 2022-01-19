@@ -356,7 +356,14 @@ public class editStudentdialog extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(FailedSubjectsTable.getInstance().getSelectedRow() == -1 ) return;
+				if(FailedSubjectsTable.getInstance().getSelectedRow() == -1 ) {
+					JOptionPane.showMessageDialog(editStudentdialog.getInstance(), "No row selected!","Error!",2);
+					return;
+				}
+				int result = JOptionPane.showConfirmDialog(Main_Frame.getInstance(),"Are you sure you want to delete this Subject?", "Sure?",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+				if (result == JOptionPane.NO_OPTION) return;
 				Student stu = StudentBase.getInstance().findStudent(StudentsController.getInstance().findSelcetedStudent(getInstance().getStu()).getIndex());
 				Subject s = stu.getRowSub(FailedSubjectsTable.getInstance().getSelectedRow());
 				stu.removeUnpassed_subject(s.getId());
