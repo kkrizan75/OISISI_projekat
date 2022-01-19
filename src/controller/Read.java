@@ -127,6 +127,7 @@ public class Read {
 				Subject s = new Subject(lineL[1],lineL[2],se,Integer.parseInt(lineL[3]),p,Integer.parseInt(lineL[4]),null,null);
 				SubjectsBase.getInstance().addSubject(s);
 				hmSu.put(Integer.parseInt(lineL[0]), s);
+				if(!lineL[5].equals("null")) ProfessorsBase.getInstance().findProfa(p.getID_number()).addSubj(s);
 			}
 		} finally {
 		reader.close();

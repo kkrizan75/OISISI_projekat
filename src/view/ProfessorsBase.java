@@ -6,6 +6,7 @@ import java.util.List;
 
 import Model.Address;
 import Model.Professor;
+import Model.Subject;
 
 
 
@@ -39,7 +40,13 @@ public class ProfessorsBase {
 			this.kolone.add("E-mail");
 		
 		}
-
+		
+		public ArrayList<Subject> SubjectsofProfessor(Professor p) {
+			for (Professor p1 : professors) {
+				if(p1.getID_number().equals(p.getID_number())) return p1.getList_of_subjects();
+			}
+			return null;
+		}
 
 		public List<Professor> getProfessors() {
 			return professors;

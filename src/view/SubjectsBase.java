@@ -4,6 +4,7 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.Grade;
 import Model.Student;
 import Model.Subject;
 import Model.Subject.Semester_enum;
@@ -53,9 +54,24 @@ public class SubjectsBase {
 					break;
 				}
 			}
+			for(Grade su2 : s.getpassedSubjects()) {
+				if(su.getId().equals(su2.getSubject().getId())) {
+					b = false;
+					break;
+				}
+			}
 			if(b) ret.add(su);
 		}
 		return ret;
+	}
+	
+	public ArrayList<Subject> getSubjsNoProf() {
+		ArrayList<Subject> als = new ArrayList<Subject>();
+		for(Subject s : subjects) {
+			if(s.getProfessor() != null) continue;
+			als.add(s);
+		}
+		return als;
 	}
 
 	public List<Subject> getSubjects() {

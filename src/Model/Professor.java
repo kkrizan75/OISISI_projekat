@@ -1,7 +1,9 @@
 package Model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Vector;
+
 
 public class Professor {
 
@@ -15,7 +17,7 @@ public class Professor {
 	private String ID_number;
 	private String title;
 	private int years_of_work_exp;
-	private Vector<Subject> list_of_subjects = new Vector<Subject>();
+	private ArrayList<Subject> list_of_subjects;
 	
 	public Professor(String name, String surname, String title,String eMail ,
 			String contactPhone,Address addressOfResidence , Address officeAddress, String idNumber, LocalDate birthDate,
@@ -30,7 +32,20 @@ public class Professor {
 		this.office_address = officeAddress;
 		ID_number = idNumber;
 		this.title = title;
+		this.list_of_subjects = new ArrayList<Subject>();
 		this.years_of_work_exp = yearsOfWorkingExp;
+	}
+	
+	public Subject getRowSub(int rowIndex) {
+		return this.list_of_subjects.get(rowIndex);
+	}
+	
+	public void removeSubj(Subject s) {
+		list_of_subjects.remove(s);
+	}
+	
+	public void addSubj(Subject s) {
+		list_of_subjects.add(s);
 	}
 
 	public String getSurname() {
@@ -113,11 +128,11 @@ public class Professor {
 		this.years_of_work_exp = years_of_work_exp;
 	}
 
-	public Vector<Subject> getList_of_subjects() {
+	public ArrayList<Subject> getList_of_subjects() {
 		return list_of_subjects;
 	}
 
-	public void setList_of_subjects(Vector<Subject> list_of_subjects) {
+	public void setList_of_subjects(ArrayList<Subject> list_of_subjects) {
 		this.list_of_subjects = list_of_subjects;
 	}
 	
