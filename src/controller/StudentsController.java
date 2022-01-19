@@ -59,7 +59,7 @@ private static StudentsController instance = null;
 	}
 	
 	public Student findStudentByInD(String ind) {
-		for (Student S : StudentBase.getInstance().getStudenti().values()) {
+		for (Student S : StudentBase.getInstance().getStudenti()) {
 			if(S.getIndex().equals(ind)) return S;
 		}
 		return null;
