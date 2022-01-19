@@ -23,6 +23,7 @@ public class StudentTable extends JTable {
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableStudents());
 		this.setAutoCreateRowSorter(true);
+// 		StudentBase.getInstance().getStudenti().sort;
 //		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(this.getModel());
 //		this.setRowSorter(sorter);
 //

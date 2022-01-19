@@ -24,6 +24,7 @@ public class Read {
 	
 	private HashMap<Integer,Address> hmA = new HashMap<Integer,Address>();
 	private HashMap<Department,Integer> hmD = new HashMap<Department,Integer>();
+	private HashMap<Department,Integer> hmD2 = new HashMap<Department,Integer>();
 	private HashMap<Integer,Student> hmS = new HashMap<Integer,Student>();
 	private HashMap<Integer,Professor> hmP = new HashMap<Integer,Professor>();
 	private HashMap<Integer,Subject> hmSu = new HashMap<Integer,Subject>();
@@ -81,6 +82,7 @@ public class Read {
 				String[] lineL = line.split("\t+",12);
 				Department d = new Department(lineL[1],lineL[2],null);
 				hmD.put(d, Integer.parseInt(lineL[0]));
+				hmD2.put(d, Integer.parseInt(lineL[3]));
 			}
 		} finally {
 		reader.close();
@@ -106,6 +108,9 @@ public class Read {
 			}
 		} finally {
 		reader.close();
+		}
+		for(Department d : hmD.keySet()) {
+			d.setBoss(hmP.get(hmD.get(d)));
 		}
 		
 		f = new File("OSISI-BASE\\Predmeti.txt");

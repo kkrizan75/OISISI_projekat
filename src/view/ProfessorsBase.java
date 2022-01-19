@@ -64,6 +64,13 @@ public class ProfessorsBase {
 		public Professor getRow(int rowIndex) {
 			return this.professors.get(rowIndex);
 		}
+		
+		public Professor findProfa(String id) {
+			for (Professor p : professors) {
+				if(p.getID_number().equals(id)) return p;
+			}
+			return null;
+		}
 
 		public String getValueAt(int row, int column) {
 			if (row >= professors.size()) {
