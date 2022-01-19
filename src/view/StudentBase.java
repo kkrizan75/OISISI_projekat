@@ -2,6 +2,7 @@ package view;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import Model.Address;
@@ -21,13 +22,13 @@ public class StudentBase {
 		return instance;
 	}
 
-	private long generator;
+	private int generator;
 
-	private List<Student> Studenti;
+	private HashMap<Integer,Student> Studenti;
 	private List<String> kolone;
 
 	private StudentBase() {
-		generator = 0;
+		generator = -1;
 	
 		initStudente();
 
@@ -42,7 +43,7 @@ public class StudentBase {
 	}
 
 	private void initStudente() {
-		this.Studenti = new ArrayList<Student>();
+		this.Studenti = new HashMap<Integer,Student>();
 		Subject s = new Subject("RA1", "Kompjuteri", Semester_enum.W, 4, null, 8, null, null );
 		Student stud = new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B);
 		LocalDate ld = LocalDate.of(2000,2,2);
@@ -50,13 +51,13 @@ public class StudentBase {
 		stud.setUnpassed_subject(s);
 		stud.addPassedSubject(g);
 		
-		this.Studenti.add(stud);
+		this.Studenti.put(0,stud);
 
 		
 	}
 	
 	public boolean contains(String ind) {
-		for(Student s : Studenti) {
+		for(Student s : Studenti.values()) {
 			if(s.getIndex().equals(ind)) {
 				return true;
 			}
@@ -64,22 +65,22 @@ public class StudentBase {
 		return false;
 	}
 
-	public List<Student> getStudenti() {
+	public HashMap<Integer,Student> getStudenti() {
 		return Studenti;
 	}
 	
 	public Student findStudent(String xd) {
-		for(Student s : Studenti) {
+		for(Student s : Studenti.values()) {
 			if(s.getIndex().equals(xd)) return s;
 		}
 		return null;
 	}
 
-	public void setStudenti(List<Student> Studenti) {
+	public void setStudenti(HashMap<Integer,Student> Studenti) {
 		this.Studenti = Studenti;
 	}
 
-	private long generateId() {
+	private int generateId() {
 		return ++generator;
 	}
 
@@ -140,21 +141,18 @@ public class StudentBase {
 	
 
 	public void dodajStudenta(Student student) {
-		this.Studenti.add(student);
+		System.out.println(generator);
+		this.Studenti.put(generateId(),student);
+		System.out.println(student.getname());
 	}
 
-	public void izbrisiStudenta(String id) {
-		for (Student Student : Studenti) {
-			if (Student.getIndex().equals(id)) {
-				Studenti.remove(Student);
-				break;
-			}
-		}
+	public void izbrisiStudenta(int id) {
+		Studenti.remove(id);
 	}
 
 	public void izmeniStudenta() {
 			
-		for (Student Student : Studenti) {
+		for (Student Student : Studenti.values()) {
 			if (Student.getIndex().equals(editStudentdialog.getInstance().getoldIND())) {
 				Student.setIndex(editStudentdialog.getInstance().getIndex());
 				Student.setname(editStudentdialog.getInstance().getName());

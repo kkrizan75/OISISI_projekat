@@ -174,6 +174,8 @@ public class editStudentdialog extends JDialog{
 		
 		super(f,s,b);
 		Student S = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
+		System.out.println(StudentTable.getInstance().getSelectedRow());
+		System.err.println(S.getname());
 		getInstance().setconfF(S);
 		getInstance().setconfT();
 		

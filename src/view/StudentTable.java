@@ -21,8 +21,15 @@ public class StudentTable extends JTable {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		// Sama JTable komponenta je implementirana postujuci MVC arhitekturu.
 		this.setModel(new AbstractTableStudents());
+		this.setAutoCreateRowSorter(true);
+//		TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(this.getModel());
+//		this.setRowSorter(sorter);
+//
+//		List<RowSorter.SortKey> sortKeys = new ArrayList<>(25);
+//		sortKeys.add(new RowSorter.SortKey(4, SortOrder.ASCENDING));
+//		sortKeys.add(new RowSorter.SortKey(0, SortOrder.ASCENDING));
+//		sorter.setSortKeys(sortKeys);
 	}
 	
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {

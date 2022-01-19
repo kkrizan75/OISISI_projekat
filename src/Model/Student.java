@@ -115,7 +115,12 @@ public class Student {
 		this.currentYear = currentYear;
 	}
 	public float getavgGrade() {
-		return avgGrade;
+		if (passedSubjects.size() == 0) return 5;
+		float ret = 0;
+		for(Grade s: passedSubjects) {
+			ret += s.getGrade();
+		}
+		return ret/passedSubjects.size();
 	}
 	public void setavgGrade(float avgGrade) {
 		this.avgGrade = avgGrade;

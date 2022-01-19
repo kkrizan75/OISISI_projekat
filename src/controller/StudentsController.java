@@ -46,8 +46,7 @@ private static StudentsController instance = null;
 		               JOptionPane.QUESTION_MESSAGE);
 		if (result == JOptionPane.YES_OPTION) {
     	// izmena modela
-    	Student student = StudentBase.getInstance().getRow(rowSelectedIndex);
-    	StudentBase.getInstance().izbrisiStudenta(student.getIndex());
+    	StudentBase.getInstance().izbrisiStudenta(rowSelectedIndex);
 		// azuriranje prikaza
     	AbstractTableStudents model = (AbstractTableStudents) StudentTable.getInstance().getModel();
     	model.fireTableDataChanged();
@@ -60,7 +59,7 @@ private static StudentsController instance = null;
 	}
 	
 	public Student findStudentByInD(String ind) {
-		for (Student S : StudentBase.getInstance().getStudenti()) {
+		for (Student S : StudentBase.getInstance().getStudenti().values()) {
 			if(S.getIndex().equals(ind)) return S;
 		}
 		return null;

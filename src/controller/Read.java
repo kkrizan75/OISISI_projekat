@@ -40,7 +40,6 @@ public class Read {
 	
 	public void read() throws IOException {
 		File f = null;
-		
 		f = new File("OSISI-BASE\\Adrese.txt");
 		BufferedReader reader;
 		reader = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
