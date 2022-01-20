@@ -4,7 +4,9 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import Model.Grade;
 import Model.Professor;
+
 import Model.Student;
 import Model.Subject;
 import Model.Subject.Semester_enum;
@@ -44,6 +46,36 @@ public class SubjectsBase {
 	
 	}
 
+	public ArrayList<Subject> unpassedSforStudent(Student s) {
+		ArrayList<Subject> ret = new ArrayList<Subject>();
+		boolean b = true;
+		for (Subject su: subjects) {
+			b = true;
+			for(Subject su1 : s.getunpassedSubjects()) {
+				if(su.getId().equals(su1.getId())) {
+					b = false;
+					break;
+				}
+			}
+			for(Grade su2 : s.getpassedSubjects()) {
+				if(su.getId().equals(su2.getSubject().getId())) {
+					b = false;
+					break;
+				}
+			}
+			if(b) ret.add(su);
+		}
+		return ret;
+	}
+	
+	public ArrayList<Subject> getSubjsNoProf() {
+		ArrayList<Subject> als = new ArrayList<Subject>();
+		for(Subject s : subjects) {
+			if(s.getProfessor() != null) continue;
+			als.add(s);
+		}
+		return als;
+	}
 
 	public List<Subject> getSubjects() {
 		return subjects;
@@ -129,7 +161,7 @@ public class SubjectsBase {
 	
 	
 	public String getSubjectsValueAt(int row, int column) {
-		Student s = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
+		Student s = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex());
 		failedSubjects  = s.getunpassedSubjects();
 		if(row >= failedSubjects.size()) {
 			switch (column) {

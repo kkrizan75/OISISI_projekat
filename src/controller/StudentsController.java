@@ -56,8 +56,7 @@ private static StudentsController instance = null;
 		               JOptionPane.QUESTION_MESSAGE);
 		if (result == JOptionPane.YES_OPTION) {
     	// izmena modela
-    	Student student = StudentBase.getInstance().getRow(rowSelectedIndex);
-    	StudentBase.getInstance().izbrisiStudenta(student.getIndex());
+    	StudentBase.getInstance().izbrisiStudenta(rowSelectedIndex);
 		// azuriranje prikaza
     	AbstractTableStudents model = (AbstractTableStudents) StudentTable.getInstance().getModel();
     	model.fireTableDataChanged();

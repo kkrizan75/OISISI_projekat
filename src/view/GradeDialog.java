@@ -161,7 +161,7 @@ public class GradeDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Student st = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
+				Student st = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex());
 				StudentsController.getInstance().addPassedSubjectToStudent(st, su, grade, date);
 				setVisible(false);
 			}

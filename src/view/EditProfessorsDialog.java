@@ -17,18 +17,19 @@ import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-
-
 import Model.Address;
 import Model.Professor;
+import Model.Student;
+import Model.Subject;
 import controller.ProfessorsController;
+import controller.StudentsController;
 
 
 public class EditProfessorsDialog extends JDialog{
@@ -71,7 +72,6 @@ public class EditProfessorsDialog extends JDialog{
 			}
 		return instance;
 	}
-	
 
 
 	
@@ -82,6 +82,7 @@ public class EditProfessorsDialog extends JDialog{
 
 		
 		Professor prof = ProfessorsController.getInstance().findSelectedProfessor(ProfessorsTable.getInstance().getSelectedIndex());
+		System.out.println(ProfessorsTable.getInstance().getSelectedIndex());
 		
 		initCheck(prof);
 		
@@ -174,6 +175,50 @@ public class EditProfessorsDialog extends JDialog{
 		JTabbedPane tp = new JTabbedPane();
 		tp.add("Information", boxC);
 		JPanel subjectsinfo = new JPanel();
+		JPanel buttons = new JPanel();
+		JButton AddS = new JButton();
+		AddS.setBackground(Color.LIGHT_GRAY);
+		AddS.setPreferredSize(new Dimension(140,30));
+		AddS.setText("Add Subject");
+		AddS.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new addSubjtoP(Main_Frame.getInstance(),"Add Subject",true);
+				
+			}
+			
+		});
+		JButton	RemoveS = new JButton();
+		RemoveS.setBackground(Color.LIGHT_GRAY);
+		RemoveS.setPreferredSize(new Dimension(140,30));
+		RemoveS.setText("Remove Subject");
+		RemoveS.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(ProfTable.getInstance().getSelectedRow() == -1 ) {
+					JOptionPane.showMessageDialog(getInstance(), "No row selected!","Error!",2);
+					return;
+				}
+				int result = JOptionPane.showConfirmDialog(Main_Frame.getInstance(),"Are you sure you want to delete this Subject?", "Sure?",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+				if (result == JOptionPane.NO_OPTION) return;
+				Professor stu = ProfessorsBase.getInstance().findProfa(ProfessorsController.getInstance().findSelectedProfessor(ProfessorsTable.getInstance().getSelectedRow()).getID_number());
+				Subject s = stu.getRowSub((ProfTable.getInstance().getSelectedRow()));
+				stu.removeSubj(s);
+				s.setProfessor(null);
+				AbstractProfTable model = (AbstractProfTable) ProfTable.getInstance().getModel();
+				model.fireTableDataChanged();
+				EditProfessorsDialog.getInstance().validate();
+			}
+		});
+		buttons.add(AddS);
+		buttons.add(RemoveS);
+		ProfTable pt = ProfTable.getInstance();
+		subjectsinfo.add(buttons,BorderLayout.NORTH);
+		subjectsinfo.add(new JScrollPane(pt),BorderLayout.SOUTH);
 		tp.add("Subjects", subjectsinfo);
 		JPanel dialogPanel = new JPanel();
 		dialogPanel.setBackground(new Color(255,255,255));

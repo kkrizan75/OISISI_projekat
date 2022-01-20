@@ -21,14 +21,14 @@ public class StudentBase {
 		return instance;
 	}
 
-	private long generator;
+	private int generator;
 
 	private List<Student> Studenti;
 	private List<String> kolone;
 
 	private StudentBase() {
-		generator = 0;
-	
+		generator = -1;
+		Studenti = new ArrayList<Student>();
 		initStudente();
 
 		this.kolone = new ArrayList<String>();
@@ -42,7 +42,6 @@ public class StudentBase {
 	}
 
 	private void initStudente() {
-		this.Studenti = new ArrayList<Student>();
 		Subject s = new Subject("RA1", "Kompjuteri", Semester_enum.W, 4, null, 8, null, null );
 		Student stud = new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B);
 		LocalDate ld = LocalDate.of(2000,2,2);
@@ -79,7 +78,7 @@ public class StudentBase {
 		this.Studenti = Studenti;
 	}
 
-	private long generateId() {
+	private int generateId() {
 		return ++generator;
 	}
 
@@ -94,6 +93,7 @@ public class StudentBase {
 	public Student getRow(int rowIndex) {
 		return this.Studenti.get(rowIndex);
 	}
+	
 
 	public String getValueAt(int row, int column) {
 		if (row >= Studenti.size()) {
@@ -139,16 +139,11 @@ public class StudentBase {
 	
 
 	public void dodajStudenta(Student student) {
-		this.Studenti.add(student);
+		Studenti.add(student);
 	}
 
-	public void izbrisiStudenta(String id) {
-		for (Student Student : Studenti) {
-			if (Student.getIndex().equals(id)) {
-				Studenti.remove(Student);
-				break;
-			}
-		}
+	public void izbrisiStudenta(int id) {
+		Studenti.remove(id);
 	}
 	
 	public void findAvgGrade(String index) {

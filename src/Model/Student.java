@@ -60,6 +60,14 @@ public class Student {
 		Status = status;
 	}
 	
+	public int getECTS() {
+		int ret = 0;
+		for (Grade g : this.passedSubjects) {
+			ret += g.getSubject().getECTS();
+		}
+		return ret;
+	}
+	
 	public String getname() {
 		return Name;
 	}
@@ -115,15 +123,37 @@ public class Student {
 		this.currentYear = currentYear;
 	}
 	public float getavgGrade() {
-		return avgGrade;
+		if (passedSubjects.size() == 0) return 5;
+		float ret = 0;
+		for(Grade s: passedSubjects) {
+			ret += s.getGrade();
+		}
+		return ret/passedSubjects.size();
 	}
 	public void setavgGrade(float avgGrade) {
 		this.avgGrade = avgGrade;
 	}
+	
+	public Subject getRowSub(int rowIndex) {
+		return this.unpassedSubjects.get(rowIndex);
+	}
+	
 	public ArrayList<Subject> getunpassedSubjects() {
 		return unpassedSubjects;
 	}
+	
+	public void removeUnpassed_subject(String xd) {
+		for(Subject s : unpassedSubjects) {
+			if(s.getId().equals(xd)) {
+				unpassedSubjects.remove(s);
+				return;
+			}
+		}
+	}
 	public void setUnpassed_subject(Subject unpassed_subject) {
+		for(Subject s : unpassedSubjects) {
+			if(s.getId().equals(unpassed_subject.getId())) return;
+		}
 		unpassedSubjects.add(unpassed_subject);
 	}
 

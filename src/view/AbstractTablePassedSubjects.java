@@ -9,7 +9,7 @@ public class AbstractTablePassedSubjects extends AbstractTableModel{
 
 	@Override
 	public int getRowCount() {
-		return StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow()).getpassedSubjects().size();
+		return StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getpassedSubjects().size();
 	}
 
 	@Override

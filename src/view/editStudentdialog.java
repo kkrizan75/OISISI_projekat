@@ -12,7 +12,6 @@ import java.awt.event.FocusListener;
 import java.time.LocalDate;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -26,6 +25,7 @@ import javax.swing.JTextField;
 import Model.Address;
 import Model.Student;
 import Model.Student.Status_enum;
+import Model.Subject;
 import controller.StudentsController;
 import controller.SubjectsController;
 
@@ -47,8 +47,14 @@ public class editStudentdialog extends JDialog{
 	private int yearOfEnrollment;
 	private int currentYear = 1;
 	private Status_enum Status = Status_enum.S;
-	
+	private int selectedStudent = -1;
+	private JPanel failedSubjects = new JPanel();
+	private JScrollPane jscp = new JScrollPane(FailedSubjectsTable.getInstance());
+	private boolean in = false;
 	private String oldIND;
+	private JLabel avg = new JLabel();
+	private JLabel ECTS = new JLabel();
+	private JPanel passedSubjects = new JPanel();
 	
 	private static editStudentdialog instance = null;
 	
@@ -67,10 +73,19 @@ public class editStudentdialog extends JDialog{
 		this.setCurrentYear(S.getcurrentYear());
 		this.setStatus(S.getStatus());
 		this.setoldIND((S.getIndex()));
+		this.setStu(StudentTable.getInstance().getSelectedIndex());
 		ConfirmB.setBackground(Color.GRAY);
 		ConfirmB.setPreferredSize(new Dimension(150,40));
 		ConfirmB.setText("Confirm");
 		ConfirmB.addActionListener(new ActionListenerCONF());
+	}
+	
+	public void setStu(int s ) {
+		selectedStudent = s;
+	}
+	
+	public int getStu() {
+		return selectedStudent;
 	}
 	
 	public static editStudentdialog getInstance() {
@@ -162,7 +177,7 @@ public class editStudentdialog extends JDialog{
 	public editStudentdialog(Frame f,String s,boolean b) {
 		
 		super(f,s,b);
-		Student S = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
+		Student S = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex());
 		getInstance().setconfF(S);
 		getInstance().setconfT();
 		
@@ -325,7 +340,7 @@ public class editStudentdialog extends JDialog{
 		dT.add("Information", boxC);
 		
 		//JList list = new JList();
-		JPanel passedSubjects = new JPanel();//new FlowLayout(FlowLayout.CENTER));
+		//new FlowLayout(FlowLayout.CENTER));
 		JButton canc = new JButton();
 		canc.setBackground(Color.LIGHT_GRAY);
 		canc.setPreferredSize(new Dimension(100,30));
@@ -342,7 +357,6 @@ public class editStudentdialog extends JDialog{
 		passedSubjects.add(canc,BorderLayout.WEST);
 		passedSubjects.add(new JScrollPane(PassedSubjectsTable.getInstance()),BorderLayout.SOUTH);
 		
-		JPanel failedSubjects = new JPanel();
 		JButton pass = new JButton();
 		pass.setBackground(Color.LIGHT_GRAY);
 		pass.setPreferredSize(new Dimension(100,30));
@@ -354,6 +368,13 @@ public class editStudentdialog extends JDialog{
 				if(SubjectsController.getInstance().checkRow(FailedSubjectsTable.getInstance().getSelectedRow())) return;
 				GradeDialog grade = new GradeDialog();
 				grade.setVisible(true);
+				passedSubjects.remove(ECTS);
+				passedSubjects.remove(avg);
+				ECTS.setText("Average Grade: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getavgGrade());
+				
+				avg.setText("ECTS: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getECTS());
+				passedSubjects.add(avg);
+				passedSubjects.add(ECTS);
 			}
 			
 		});
@@ -362,16 +383,50 @@ public class editStudentdialog extends JDialog{
 		remove.setBackground(Color.LIGHT_GRAY);
 		remove.setPreferredSize(new Dimension(100,30));
 		remove.setText("Remove");
+		remove.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(FailedSubjectsTable.getInstance().getSelectedRow() == -1 ) {
+					JOptionPane.showMessageDialog(editStudentdialog.getInstance(), "No row selected!","Error!",2);
+					return;
+				}
+				int result = JOptionPane.showConfirmDialog(Main_Frame.getInstance(),"Are you sure you want to delete this Subject?", "Sure?",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+				if (result == JOptionPane.NO_OPTION) return;
+				Student stu = StudentBase.getInstance().findStudent(StudentsController.getInstance().findSelcetedStudent(getInstance().getStu()).getIndex());
+				Subject s = stu.getRowSub(FailedSubjectsTable.getInstance().getSelectedRow());
+				stu.removeUnpassed_subject(s.getId());
+				AbstractTableFailedSubjects model = (AbstractTableFailedSubjects) FailedSubjectsTable.getInstance().getModel();
+				model.fireTableDataChanged();
+				editStudentdialog.getInstance().validate();
+			}
+		});
 		
 		JButton add = new JButton();
 		add.setBackground(Color.LIGHT_GRAY);
 		add.setPreferredSize(new Dimension(100,30));
 		add.setText("Add");
+		add.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new addSubjecttoS(Main_Frame.getInstance(),"Add Subject",true);
+				
+			}
+			
+		});
 		
 		failedSubjects.add(add);
 		failedSubjects.add(remove);
 		failedSubjects.add(pass);
 		failedSubjects.add(new JScrollPane(FailedSubjectsTable.getInstance()));
+		ECTS.setText("Average Grade: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getavgGrade());
+		
+		avg.setText("ECTS: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getECTS());
+		passedSubjects.add(ECTS);
+		passedSubjects.add(avg);
 		dT.add("Passed Subjects", passedSubjects);
 		dT.add("Failed Subjects", failedSubjects);
 		JPanel defaultPanel = new JPanel();

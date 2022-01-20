@@ -100,7 +100,7 @@ public class GradeBase {
 	}
 	
 	public String getSubjectsValueAt(int row, int column) {
-		Student s = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
+		Student s = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex());
 		grades = s.getpassedSubjects();
 		if(row >= grades.size()) {
 			switch (column) {

@@ -13,7 +13,7 @@ public class AbstractTableFailedSubjects extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow()).getunpassedSubjects().size();
+		return StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getunpassedSubjects().size();
 	}
 
 	@Override

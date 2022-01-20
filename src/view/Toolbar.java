@@ -66,8 +66,7 @@ public class Toolbar extends JToolBar {
 					ProfessorsTable.getInstance().searchProfessors(searchbar.getText());
 					}
 				if (TabbedPane.getInstance().getSelectedIndex() == 2) {
-					SubjectsTable.getInstance().searchSubjects(searchbar.getText());
-					
+					SubjectsTable.getInstance().searchSubjects(searchbar.getText());	
 				}
 			}
 		});
@@ -84,9 +83,14 @@ public class Toolbar extends JToolBar {
 				if (TabbedPane.getInstance().getSelectedIndex() == 1) {
 					ProfessorsTable.getInstance().searchProfessors(searchbar.getText());
 					}
+
 				if (TabbedPane.getInstance().getSelectedIndex() == 2) {
 					SubjectsTable.getInstance().searchSubjects(searchbar.getText());
 					}
+
+				if (TabbedPane.getInstance().getSelectedIndex() == 0)
+					StudentTable.getInstance().searchStudents(searchbar.getText());
+
 				}
 		});
 		add(btnSearch);

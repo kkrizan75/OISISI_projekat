@@ -3,9 +3,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import Model.Address;
+import Model.Department;
 import Model.Professor;
+import Model.Subject;
+import controller.Read;
 
 
 
@@ -39,7 +41,35 @@ public class ProfessorsBase {
 			this.kolone.add("E-mail");
 		
 		}
-
+		
+		public ArrayList<Professor> getProfDEP(String s) {
+			ArrayList<Professor> ret = new ArrayList<Professor>();
+			ArrayList<Professor> profs = null;
+			boolean b = false; 
+			for(Department d : Read.getInstance().getDep().values()) {
+				if(d == null) continue;
+				if(d.getCode().equals(s)) {
+					profs = d.getProf_list();
+				if(profs == null) return null;
+					for(Professor p1 : profs) {
+							if(d.getBoss().getID_number().equals(p1.getID_number())) continue;
+							if((p1.getTitle().equals("VANREDNI_PROFESOR")||p1.getTitle().equals("REDOVNI_PROFESOR")
+									&& p1.getYears_of_work_exp() > 5))
+							ret.add(p1);
+						}
+				break;	
+					}
+			}
+			return ret;
+			
+		}
+		
+		public ArrayList<Subject> SubjectsofProfessor(Professor p) {
+			for (Professor p1 : professors) {
+				if(p1.getID_number().equals(p.getID_number())) return p1.getList_of_subjects();
+			}
+			return null;
+		}
 
 		public List<Professor> getProfessors() {
 			return professors;
@@ -63,6 +93,13 @@ public class ProfessorsBase {
 
 		public Professor getRow(int rowIndex) {
 			return this.professors.get(rowIndex);
+		}
+		
+		public Professor findProfa(String id) {
+			for (Professor p : professors) {
+				if(p.getID_number().equals(id)) return p;
+			}
+			return null;
 		}
 
 		public String getValueAt(int row, int column) {
@@ -111,6 +148,8 @@ public class ProfessorsBase {
 					12));
 			
 		}
+		
+		
 
 		public void editProfessor() {
 			
