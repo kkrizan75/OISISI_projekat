@@ -42,6 +42,11 @@ private static SubjectsController instance = null;
 	
 	public Subject findSelcetedSubject(int rowSelectedIndex){
 		return SubjectsBase.getInstance().getRow(rowSelectedIndex);
+	
+	}
+	
+	public Subject findSelectedUnpassedSubject(int rowSelectedIndex) {
+		return SubjectsBase.getInstance().getFrow(rowSelectedIndex);
 	}
 	
 	public boolean checkRow(int rowSelectedIndex) {

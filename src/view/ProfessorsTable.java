@@ -55,19 +55,6 @@ public class ProfessorsTable extends JTable {
 		});
 		
 		profSort =new TableRowSorter<AbstractTableProfessors>(profAbstractTable);
-		profSort.setComparator(3, new Comparator<String>() {
-			
-			@Override
-			public int compare(String name1, String name2) {
-				return extractInt(name1) - extractInt(name2);
-			}
-			
-			int extractInt(String s) {
-				String num = s.replaceAll("\\D", "");
-				return num.isEmpty() ? 0 : Integer.parseInt(num);
-			}
-			
-		});
 		this.setRowSorter(profSort);
 		
 	}
