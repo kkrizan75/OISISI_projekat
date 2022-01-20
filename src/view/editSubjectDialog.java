@@ -11,17 +11,23 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 import javax.swing.Box;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import java.util.List;
+
 import Model.Subject;
+import Model.Professor;
 import Model.Student.Status_enum;
 import Model.Subject.Semester_enum;
+import controller.ProfessorsController;
 import controller.StudentsController;
 import controller.SubjectsController;
 import view.addSubjectDialog.ActionListener2;
@@ -37,7 +43,9 @@ public class editSubjectDialog extends JDialog{
 	private int yearOfStudy;
 	private int ECTS;
 	private String oldId;
+	private Professor professor;
 	
+
 	private static editSubjectDialog instance = null;
 	
 	private void setconfF(Subject s) {
@@ -50,6 +58,7 @@ public class editSubjectDialog extends JDialog{
 		this.setSemester(s.getSemester());
 		this.setYearOfStudy(s.getyearOfStudy());
 		this.setECTS(s.getECTS());
+		this.setProfessor(s.getProfessor());
 		ConfirmB.setBackground(Color.GRAY);
 		ConfirmB.setPreferredSize(new Dimension(150,40));
 		ConfirmB.setText("Confirm");
@@ -114,7 +123,7 @@ public class editSubjectDialog extends JDialog{
 	
 	public editSubjectDialog(Frame f,String s,boolean b) {
 		super(f,s,b);
-		Subject su =	SubjectsController.getInstance().findSelcetedSubject(SubjectsTable.getInstance().getSelectedRow());
+		Subject su =	SubjectsController.getInstance().findSelcetedSubject(SubjectsTable.getInstance().getSelectedIndex());
 		getInstance().setconfF(su);
 		getInstance().setconfT();
 		getInstance().checkB();
@@ -202,6 +211,35 @@ public class editSubjectDialog extends JDialog{
 			);
 		panSemester.add(cS);
 		
+		JPanel panprof = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		JLabel lblprof = new JLabel("Professor*:");
+		lblprof.setPreferredSize(dim);
+		JTextField txtprof = new JTextField();
+		txtprof.setPreferredSize(new Dimension(140, 25));
+		txtprof.setBackground(Color.LIGHT_GRAY);
+		if(getInstance().getProfessor() != null) 
+			txtprof.setText(getInstance().getProfessor().getName() + " " + getInstance().getProfessor().getSurname());
+		JButton add = new JButton();
+		add.setPreferredSize(new Dimension(25,25));
+		add.setText("+");
+		add.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {	
+				
+			}
+			
+		});
+		JButton remove = new JButton();
+		remove.setPreferredSize(new Dimension(25,25));
+		remove.setText("-");
+		panprof.add(lblprof);
+		panprof.add(txtprof);
+		panprof.add(add);
+		panprof.add(remove);
+		
+		
+		
 		JButton CancelB = new JButton();
 		CancelB.setBackground(Color.GRAY);
 		CancelB.setPreferredSize(new Dimension(150,40));
@@ -224,9 +262,9 @@ public class editSubjectDialog extends JDialog{
 		boxC.add(panId);
 		boxC.add(panECTS);
 		boxC.add(panyearOfStudy);
+		boxC.add(panprof);
 		boxC.add(panSemester);
 		boxC.add(panConfCanc);
-		
 		
 		add(boxC, BorderLayout.NORTH);
 		
@@ -247,6 +285,14 @@ public class editSubjectDialog extends JDialog{
 
 	public void setId(String id) {
 		Id = id;
+	}
+	
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 
 	public String getName() {

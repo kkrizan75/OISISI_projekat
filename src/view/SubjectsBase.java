@@ -175,7 +175,6 @@ public class SubjectsBase {
 	
 	private void initSubjects() {
 		this.subjects = new ArrayList<Subject>();
-		this.subjects.add(new Subject("RA1", "Kompjuteri i ostalo", Semester_enum.W, 4, null, 8, null, null ));
 
 		
 	}

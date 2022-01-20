@@ -151,6 +151,7 @@ public class Read {
 				Grade g = new Grade(StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()),SubjectsBase.getInstance().findSubject(hmSu.get(Integer.parseInt(lineL[1])).getId())
 						,Integer.parseInt(lineL[2]),lc);
 				StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()).addPassedSubject(g);
+				StudentsController.getInstance().changeAvgGrade(StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()).getIndex());
 			}
 		} finally {
 		reader.close();

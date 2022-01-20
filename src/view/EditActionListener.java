@@ -22,7 +22,7 @@ public class EditActionListener implements ActionListener {
 				EditProfessorsDialog.getInstance().setVisible(true);
 		}
 		if (TabbedPane.getInstance().getSelectedIndex() == 2) {
-			if (SubjectsController.getInstance().checkRow(SubjectsTable.getInstance().getSelectedRow())) return;
+			if (SubjectsController.getInstance().checkRow(SubjectsTable.getInstance().getSelectedIndex())) return;
 			eSud = new editSubjectDialog(Main_Frame.getInstance(),"Edit Subject",true);
 			eSud.setVisible(true);
 		}
