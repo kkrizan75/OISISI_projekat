@@ -12,6 +12,7 @@ import java.awt.event.FocusListener;
 
 import javax.swing.Box;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -44,6 +45,10 @@ public class editSubjectDialog extends JDialog{
 	private int ECTS;
 	private String oldId;
 	private Professor professor;
+	private JTextField txtProf = new JTextField();
+	private JButton add = new JButton(); 
+	private JButton remove = new JButton();
+	private Subject currSubject;
 	
 
 	private static editSubjectDialog instance = null;
@@ -59,11 +64,54 @@ public class editSubjectDialog extends JDialog{
 		this.setYearOfStudy(s.getyearOfStudy());
 		this.setECTS(s.getECTS());
 		this.setProfessor(s.getProfessor());
+		this.setCurrSubject(s);
 		ConfirmB.setBackground(Color.GRAY);
 		ConfirmB.setPreferredSize(new Dimension(150,40));
 		ConfirmB.setText("Confirm");
 		ConfirmB.addActionListener(new ActionListenerCONF());
 		ConfirmB.setEnabled(false);
+		
+		add.setPreferredSize(new Dimension(25,25));
+		ImageIcon icon = new ImageIcon("images\\\\plus2.png");
+		add.setIcon(icon);
+		add.setEnabled(true);
+		add.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {	
+				AddProfToSubjDialog dial = new AddProfToSubjDialog();
+				dial.setVisible(true);
+			}
+			
+		});
+		
+		remove.setPreferredSize(new Dimension(25,25));
+		ImageIcon iconrem = new ImageIcon("images\\close.png");
+		remove.setIcon(iconrem);
+		remove.setEnabled(true);
+		remove.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				txtProf.setText("");
+				setRem(false);
+				setAdd(true);
+				SubjectsController.getInstance().findSubjectByID(getId()).setProfessor(null);
+				ProfessorsController.getInstance().findProfessorByID(getProfessor().getID_number()).removeSubj(getCurrSubject());
+	
+			}
+			
+		});
+		txtProf.setPreferredSize(new Dimension(140, 25));
+		txtProf.setBackground(Color.LIGHT_GRAY);
+		if(getProfessor() != null) {
+			txtProf.setText(getProfessor().getName() + " " + getProfessor().getSurname());
+			add.setEnabled(false);
+		}
+		else {
+			txtProf.setText("");
+			remove.setEnabled(false);
+		}
 	}
 	
 	public void setoldID(String s) {
@@ -90,6 +138,14 @@ public class editSubjectDialog extends JDialog{
 		return true;
 	}
 	
+	public void setAdd(boolean b) {
+		add.setEnabled(b);
+	}
+	
+	public void setRem(boolean b) {
+		remove.setEnabled(b);
+	}
+	
 	public void setconfT() {
 		ConfirmB.setEnabled(true);
 	}
@@ -110,10 +166,9 @@ public class editSubjectDialog extends JDialog{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if (getInstance().checkB()) 
+			if (getInstance().checkB()) {
 				SubjectsController.getInstance().editSubject();
-			else {
-				JOptionPane.showMessageDialog(editSubjectDialog.getInstance(), "Error!");
+				instance = null;
 			}
 		}
 	}
@@ -213,30 +268,11 @@ public class editSubjectDialog extends JDialog{
 		
 		JPanel panprof = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		JLabel lblprof = new JLabel("Professor*:");
-		lblprof.setPreferredSize(dim);
-		JTextField txtprof = new JTextField();
-		txtprof.setPreferredSize(new Dimension(140, 25));
-		txtprof.setBackground(Color.LIGHT_GRAY);
-		if(getInstance().getProfessor() != null) 
-			txtprof.setText(getInstance().getProfessor().getName() + " " + getInstance().getProfessor().getSurname());
-		JButton add = new JButton();
-		add.setPreferredSize(new Dimension(25,25));
-		add.setText("+");
-		add.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {	
-				
-			}
-			
-		});
-		JButton remove = new JButton();
-		remove.setPreferredSize(new Dimension(25,25));
-		remove.setText("-");
+		lblprof.setPreferredSize(dim); 
 		panprof.add(lblprof);
-		panprof.add(txtprof);
-		panprof.add(add);
-		panprof.add(remove);
+		panprof.add(getInstance().txtProf);
+		panprof.add(getInstance().add);
+		panprof.add(getInstance().remove);
 		
 		
 		
@@ -249,6 +285,8 @@ public class editSubjectDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				 	EditActionListener.gateSud().setVisible(false);
+				 	instance = null;
+		
 				}
 			});
 		
@@ -269,10 +307,15 @@ public class editSubjectDialog extends JDialog{
 		add(boxC, BorderLayout.NORTH);
 		
 		setBounds(750, 180, 500, 600);
+		setLocationRelativeTo(null);
 	}
 
 	public boolean[] getConf() {
 		return conf;
+	}
+	
+	public void setProfTxt() {
+		txtProf.setText(getProfessor().getName() + " " + getProfessor().getSurname());
 	}
 
 	public void setConf(boolean[] conf) {
@@ -317,6 +360,14 @@ public class editSubjectDialog extends JDialog{
 
 	public void setYearOfStudy(int yearOfStudy) {
 		this.yearOfStudy = yearOfStudy;
+	}
+
+	public Subject getCurrSubject() {
+		return currSubject;
+	}
+
+	public void setCurrSubject(Subject currSubject) {
+		this.currSubject = currSubject;
 	}
 
 	public int getECTS() {

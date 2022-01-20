@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 
@@ -14,12 +15,12 @@ public class Subject {
 	private int yearOfStudy;
 	private Professor professor;
 	private int ECTS;
-	private Vector<Student> studentsPassed = new Vector<Student>();
-	private Vector<Student> studentsFailed = new Vector<Student>();
+	private ArrayList<Student> studentsPassed;
+	private ArrayList<Student> studentsFailed;
 	
 	
 	public Subject(String Id, String Name, Semester_enum semester, int yearOfStudy,
-			Professor professor, int eCTS, Vector<Student> studentsPassed, Vector<Student> studentsFailed) {
+			Professor professor, int eCTS) {
 		super();
 		this.Id = Id;
 		this.Name = Name;
@@ -27,8 +28,9 @@ public class Subject {
 		this.yearOfStudy = yearOfStudy;
 		this.professor = professor;
 		ECTS = eCTS;
-		this.studentsPassed = studentsPassed;
-		this.studentsFailed = studentsFailed;
+		studentsFailed = new ArrayList<Student>();
+		studentsPassed = new ArrayList<Student>();
+		
 	}
 
 
@@ -90,24 +92,31 @@ public class Subject {
 	public void setECTS(int eCTS) {
 		ECTS = eCTS;
 	}
+	
+	public void addStudentsFailed(Student s) {
+		studentsFailed.add(s);
+	}
 
+	public void addStudentsPassed(Student s) {
+		studentsPassed.add(s);
+	}
 
-	public Vector<Student> getstudentsPassed() {
+	public ArrayList<Student> getstudentsPassed() {
 		return studentsPassed;
 	}
 
 
-	public void setstudentsPassed(Vector<Student> studentsPassed) {
+	public void setstudentsPassed(ArrayList<Student> studentsPassed) {
 		this.studentsPassed = studentsPassed;
 	}
 
 
-	public Vector<Student> getstudentsFailed() {
+	public ArrayList<Student> getstudentsFailed() {
 		return studentsFailed;
 	}
 
 
-	public void setstudentsFailed(Vector<Student> studentsFailed) {
+	public void setstudentsFailed(ArrayList<Student> studentsFailed) {
 		this.studentsFailed = studentsFailed;
 	}
 

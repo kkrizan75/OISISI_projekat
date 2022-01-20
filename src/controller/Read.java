@@ -131,7 +131,7 @@ public class Read {
 				Professor p = null;
 				if(lineL[5].equals("null"));
 				else p = hmP.get(Integer.parseInt(lineL[5]));
-				Subject s = new Subject(lineL[1],lineL[2],se,Integer.parseInt(lineL[3]),p,Integer.parseInt(lineL[4]),null,null);
+				Subject s = new Subject(lineL[1],lineL[2],se,Integer.parseInt(lineL[3]),p,Integer.parseInt(lineL[4]));
 				SubjectsBase.getInstance().addSubject(s);
 				hmSu.put(Integer.parseInt(lineL[0]), s);
 				if(!lineL[5].equals("null")) ProfessorsBase.getInstance().findProfa(p.getID_number()).addSubj(s);
@@ -147,6 +147,7 @@ public class Read {
 			while ((line = reader.readLine()) != null) {
 				String[] lineL = line.split("\t+",12);
 				StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()).setUnpassed_subject(SubjectsBase.getInstance().findSubject(hmSu.get(Integer.parseInt(lineL[1])).getId()));
+				SubjectsBase.getInstance().findSubject(hmSu.get(Integer.parseInt(lineL[1])).getId()).addStudentsFailed(StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()));
 			}
 		} finally {
 		reader.close();
@@ -163,7 +164,7 @@ public class Read {
 				Grade g = new Grade(StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()),SubjectsBase.getInstance().findSubject(hmSu.get(Integer.parseInt(lineL[1])).getId())
 						,Integer.parseInt(lineL[2]),lc);
 				StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()).addPassedSubject(g);
-				StudentsController.getInstance().changeAvgGrade(StudentBase.getInstance().findStudent(hmS.get(Integer.parseInt(lineL[0])).getIndex()).getIndex());
+
 			}
 		} finally {
 		reader.close();

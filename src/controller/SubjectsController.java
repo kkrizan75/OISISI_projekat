@@ -30,8 +30,7 @@ private static SubjectsController instance = null;
 	
 	public void addSubject() {
 		Subject subject = new Subject(addSubjectDialog.getInstance().getId(),addSubjectDialog.getInstance().getName(),
-				addSubjectDialog.getInstance().getSemester(),addSubjectDialog.getInstance().getYearOfStudy(),null,addSubjectDialog.getInstance().getECTS(),
-				null,null);
+				addSubjectDialog.getInstance().getSemester(),addSubjectDialog.getInstance().getYearOfStudy(),null,addSubjectDialog.getInstance().getECTS());
 		
 		SubjectsBase.getInstance().addSubject(subject);
 		ActionListener1.getaSud().setVisible(false);
@@ -43,6 +42,31 @@ private static SubjectsController instance = null;
 	public Subject findSelcetedSubject(int rowSelectedIndex){
 		return SubjectsBase.getInstance().getRow(rowSelectedIndex);
 	
+	}
+	
+	public Subject findSubjectByID(String id) {
+		for(Subject s : SubjectsBase.getInstance().getSubjects()) {
+			if(s.getId().equals(id))
+				return s;
+		}
+		return null;
+	}
+	
+	
+	public void deleteSubject(int rowSelectedIndex) {
+		if (checkRow(rowSelectedIndex)) return;
+		int result = JOptionPane.showConfirmDialog(Main_Frame.getInstance(),"Are you sure you want to delete this Subject?", "Sure?",
+		               JOptionPane.YES_NO_OPTION,
+		               JOptionPane.QUESTION_MESSAGE);
+		if (result == JOptionPane.YES_OPTION) {
+
+    	Subject sub = SubjectsBase.getInstance().getRow(rowSelectedIndex);
+    	SubjectsBase.getInstance().deleteSubject(sub.getId());
+
+    	AbstractTableSubjects model = (AbstractTableSubjects) SubjectsTable.getInstance().getModel();
+    	model.fireTableDataChanged();
+		Main_Frame.getInstance().validate();
+			}
 	}
 	
 	public Subject findSelectedUnpassedSubject(int rowSelectedIndex) {

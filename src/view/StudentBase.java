@@ -42,7 +42,7 @@ public class StudentBase {
 	}
 
 	private void initStudente() {
-		Subject s = new Subject("RA1", "Kompjuteri", Semester_enum.W, 4, null, 8, null, null );
+		Subject s = new Subject("RA1", "Kompjuteri", Semester_enum.W, 4, null, 8 );
 		Student stud = new Student("Ivan","Ivanovic",LocalDate.of(2001,12,12),new Address("Miroljuba Petrovica", "23a", "Noiv Sad", "Makedonija"),"066 6 555 333","Ivanko@gmail.com","ra123",2016,2,Status_enum.B);
 		LocalDate ld = LocalDate.of(2000,2,2);
 		Grade g = new Grade(stud,s,6,ld);

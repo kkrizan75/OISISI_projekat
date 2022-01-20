@@ -136,5 +136,9 @@ public class Professor {
 		this.list_of_subjects = list_of_subjects;
 	}
 	
+	@Override
+	public String toString() {
+		return name + " " + surname;
+	}
 	
 }
