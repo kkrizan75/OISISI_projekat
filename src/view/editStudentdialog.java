@@ -52,6 +52,9 @@ public class editStudentdialog extends JDialog{
 	private JScrollPane jscp = new JScrollPane(FailedSubjectsTable.getInstance());
 	private boolean in = false;
 	private String oldIND;
+	private JLabel avg = new JLabel();
+	private JLabel ECTS = new JLabel();
+	private JPanel passedSubjects = new JPanel();
 	
 	private static editStudentdialog instance = null;
 	
@@ -70,7 +73,7 @@ public class editStudentdialog extends JDialog{
 		this.setCurrentYear(S.getcurrentYear());
 		this.setStatus(S.getStatus());
 		this.setoldIND((S.getIndex()));
-		this.setStu(StudentTable.getInstance().getSelectedRow());
+		this.setStu(StudentTable.getInstance().getSelectedIndex());
 		ConfirmB.setBackground(Color.GRAY);
 		ConfirmB.setPreferredSize(new Dimension(150,40));
 		ConfirmB.setText("Confirm");
@@ -174,7 +177,7 @@ public class editStudentdialog extends JDialog{
 	public editStudentdialog(Frame f,String s,boolean b) {
 		
 		super(f,s,b);
-		Student S = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
+		Student S = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex());
 		getInstance().setconfF(S);
 		getInstance().setconfT();
 		
@@ -337,7 +340,7 @@ public class editStudentdialog extends JDialog{
 		dT.add("Information", boxC);
 		
 		//JList list = new JList();
-		JPanel passedSubjects = new JPanel();//new FlowLayout(FlowLayout.CENTER));
+		//new FlowLayout(FlowLayout.CENTER));
 		JButton canc = new JButton();
 		canc.setBackground(Color.LIGHT_GRAY);
 		canc.setPreferredSize(new Dimension(100,30));
@@ -365,6 +368,13 @@ public class editStudentdialog extends JDialog{
 				if(SubjectsController.getInstance().checkRow(FailedSubjectsTable.getInstance().getSelectedRow())) return;
 				GradeDialog grade = new GradeDialog();
 				grade.setVisible(true);
+				passedSubjects.remove(ECTS);
+				passedSubjects.remove(avg);
+				ECTS.setText("Average Grade: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getavgGrade());
+				
+				avg.setText("ECTS: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getECTS());
+				passedSubjects.add(avg);
+				passedSubjects.add(ECTS);
 			}
 			
 		});
@@ -412,6 +422,11 @@ public class editStudentdialog extends JDialog{
 		failedSubjects.add(remove);
 		failedSubjects.add(pass);
 		failedSubjects.add(new JScrollPane(FailedSubjectsTable.getInstance()));
+		ECTS.setText("Average Grade: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getavgGrade());
+		
+		avg.setText("ECTS: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getECTS());
+		passedSubjects.add(ECTS);
+		passedSubjects.add(avg);
 		dT.add("Passed Subjects", passedSubjects);
 		dT.add("Failed Subjects", failedSubjects);
 		JPanel defaultPanel = new JPanel();

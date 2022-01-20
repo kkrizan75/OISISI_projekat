@@ -60,6 +60,14 @@ public class Student {
 		Status = status;
 	}
 	
+	public int getECTS() {
+		int ret = 0;
+		for (Grade g : this.passedSubjects) {
+			ret += g.getSubject().getECTS();
+		}
+		return ret;
+	}
+	
 	public String getname() {
 		return Name;
 	}

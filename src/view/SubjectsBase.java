@@ -161,7 +161,7 @@ public class SubjectsBase {
 	
 	
 	public String getSubjectsValueAt(int row, int column) {
-		Student s = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
+		Student s = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex());
 		failedSubjects  = s.getunpassedSubjects();
 		if(row >= failedSubjects.size()) {
 			switch (column) {

@@ -78,6 +78,8 @@ public class Toolbar extends JToolBar {
 				if (TabbedPane.getInstance().getSelectedIndex() == 1) {
 					ProfessorsTable.getInstance().searchProfessors(searchbar.getText());
 					}
+				if (TabbedPane.getInstance().getSelectedIndex() == 0)
+					StudentTable.getInstance().searchStudents(searchbar.getText());
 				}
 		});
 		add(btnSearch);
