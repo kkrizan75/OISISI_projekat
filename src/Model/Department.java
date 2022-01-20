@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class Department {
@@ -7,13 +8,17 @@ public class Department {
 	private String code;
 	private String name;
 	private Professor boss;
-	private Vector<Professor> profList = new Vector<Professor>();
+	private ArrayList<Professor> profList = new ArrayList<Professor>();
 	
 	public Department(String code, String name, Professor boss) {
 		super();
 		this.code = code;
 		this.name = name;
 		this.boss = boss;
+	}
+	
+	public void addProf(Professor p) {
+		profList.add(p);
 	}
 	
 	public String getCode() {
@@ -34,10 +39,10 @@ public class Department {
 	public void setBoss(Professor boss) {
 		this.boss = boss;
 	}
-	public Vector<Professor> getProf_list() {
+	public ArrayList<Professor> getProf_list() {
 		return profList;
 	}
-	public void setProf_list(Vector<Professor> prof_list) {
+	public void setProf_list(ArrayList<Professor> prof_list) {
 		this.profList = prof_list;
 	}
 	

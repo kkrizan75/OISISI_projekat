@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import Model.Address;
@@ -23,7 +24,7 @@ import view.SubjectsBase;
 public class Read {
 	
 	private HashMap<Integer,Address> hmA = new HashMap<Integer,Address>();
-	private HashMap<Department,Integer> hmD = new HashMap<Department,Integer>();
+	private HashMap<Integer,Department> hmD = new HashMap<Integer,Department>();
 	private HashMap<Department,Integer> hmD2 = new HashMap<Department,Integer>();
 	private HashMap<Integer,Student> hmS = new HashMap<Integer,Student>();
 	private HashMap<Integer,Professor> hmP = new HashMap<Integer,Professor>();
@@ -32,6 +33,9 @@ public class Read {
 	
 	private static Read instance= null;
 	
+	public HashMap<Integer,Department> getDep() {
+		return hmD;
+	}
 	public static Read getInstance() {
 		if(instance == null) {
 			instance = new Read();
@@ -81,8 +85,10 @@ public class Read {
 			while ((line = reader.readLine()) != null) {
 				String[] lineL = line.split("\t+",12);
 				Department d = new Department(lineL[1],lineL[2],null);
-				hmD.put(d, Integer.parseInt(lineL[0]));
-				hmD2.put(d, Integer.parseInt(lineL[3]));
+				if(d!=null) {
+				hmD.put( Integer.parseInt(lineL[0]),d);
+				hmD2.put( d,Integer.parseInt(lineL[3]));
+				}
 			}
 		} finally {
 		reader.close();
@@ -105,12 +111,13 @@ public class Read {
 				Professor p = new Professor(lineL[2],lineL[3],lineL[10],lineL[7],lineL[6],a,a2,lineL[1],lc,Integer.parseInt(lineL[9]));
 				ProfessorsBase.getInstance().addProfessor(p);
 				hmP.put(Integer.parseInt(lineL[0]), p);
+				hmD.get(Integer.parseInt(lineL[11])).addProf(p);
 			}
 		} finally {
 		reader.close();
 		}
-		for(Department d : hmD.keySet()) {
-			d.setBoss(hmP.get(hmD.get(d)));
+		for(Department d : hmD2.keySet()) {
+			d.setBoss(hmP.get(hmD2.get(d)));
 		}
 		
 		f = new File("OSISI-BASE\\Predmeti.txt");

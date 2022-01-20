@@ -46,7 +46,7 @@ public class editSubjFListener implements FocusListener{
 			txt.setForeground(Color.RED);
 			editSubjectDialog.getInstance().setFalse(1);
 		} else {
-			if (SubjectsController.getInstance().contains(txt.getText().trim())) {
+			if (SubjectsController.getInstance().contains(txt.getText().trim()) && !txt.getText().trim().equals(editSubjectDialog.getInstance().getoldID())) {
 				editSubjectDialog.getInstance().setFalse(1);
 				JOptionPane.showMessageDialog(editSubjectDialog.getInstance(), "Subject with that Id already exists!","Existing subject with that ID",1);
 			}

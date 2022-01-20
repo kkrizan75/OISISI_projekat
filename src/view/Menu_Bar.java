@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.Icon;
@@ -8,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 public class Menu_Bar extends JMenuBar {
@@ -25,21 +27,57 @@ public class Menu_Bar extends JMenuBar {
 		miStudents.setIcon(icon);
 		miStudents.setMnemonic(KeyEvent.VK_S);
 		miStudents.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_T, ActionEvent.CTRL_MASK));
+		miStudents.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				TabbedPane.getInstance().setSelectedIndex(0);
+			}
+			
+		});
 		JMenuItem miSubjects = new JMenuItem("Subjects");
 		icon = new ImageIcon("images\\subject.png");
 		miSubjects.setIcon(icon);
 		miSubjects.setMnemonic(KeyEvent.VK_U);
 		miSubjects.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_U, ActionEvent.CTRL_MASK));
+		miSubjects.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				TabbedPane.getInstance().setSelectedIndex(2);
+			}
+			
+		});
 		JMenuItem miProfessors = new JMenuItem("Professors");
 		icon = new ImageIcon("images\\professor.png");
 		miProfessors.setIcon(icon);
 		miProfessors.setMnemonic(KeyEvent.VK_P);
 		miProfessors.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
+		miProfessors.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				TabbedPane.getInstance().setSelectedIndex(1);
+			}
+			
+		});
 		JMenuItem miDepartments = new JMenuItem("Departments");
 		icon = new ImageIcon("images\\department.png");
 		miDepartments.setIcon(icon);
 		miDepartments.setMnemonic(KeyEvent.VK_D);
 		miDepartments.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
+		miDepartments.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new DepartmentDialog(Main_Frame.getInstance(),"Dpartments",true);
+				
+			}
+			
+		});
 		
 		JMenuItem miNew = new JMenuItem("New");
 		icon = new ImageIcon("images\\plus2.png");
@@ -69,6 +107,18 @@ public class Menu_Bar extends JMenuBar {
 		miClose.setIcon(icon);
 		miClose.setMnemonic(KeyEvent.VK_C);
 		miClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, ActionEvent.CTRL_MASK));
+		miClose.addActionListener(new ActionListener () {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int result = JOptionPane.showConfirmDialog(Main_Frame.getInstance(),"Are you want to exit?", "Exit?",
+			               JOptionPane.YES_NO_OPTION,
+			               JOptionPane.QUESTION_MESSAGE);
+				if (result == JOptionPane.YES_OPTION)
+				System.exit(0);				
+			}
+			
+		});
 
 		file.add(miNew);
 		file.addSeparator();
