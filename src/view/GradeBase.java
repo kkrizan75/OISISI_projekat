@@ -101,8 +101,8 @@ public class GradeBase {
 	
 	public String getSubjectsValueAt(int row, int column) {
 		Student s = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
-		ArrayList<Grade> passed  = s.getpassedSubjects();
-		if(row >= passed.size()) {
+		grades = s.getpassedSubjects();
+		if(row >= grades.size()) {
 			switch (column) {
 			case 0:
 				return "";
@@ -119,7 +119,7 @@ public class GradeBase {
 			}
 			
 		}else {
-			Grade grade = passed.get(row);
+			Grade grade = grades.get(row);
 			switch (column) {
 			case 0:
 				return grade.getSubject().getId();
@@ -136,10 +136,6 @@ public class GradeBase {
 			}
 			
 		}
-	}
-
-	public void addSubject(Grade grade) {
-		this.grades.add(grade);
 	}
 
 	

@@ -15,6 +15,8 @@ public class SubjectsTable extends JTable{
 	 */
 	private static final long serialVersionUID = -6769874681843326035L;
 	private static SubjectsTable instance = null;
+	public static JTable subjectsTable;
+	
 	
 	public static SubjectsTable getInstance() {
 		if (instance == null) {

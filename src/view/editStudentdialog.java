@@ -27,6 +27,7 @@ import Model.Student;
 import Model.Student.Status_enum;
 import Model.Subject;
 import controller.StudentsController;
+import controller.SubjectsController;
 
 
 public class editStudentdialog extends JDialog{
@@ -309,6 +310,7 @@ public class editStudentdialog extends JDialog{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
+				StudentsController.getInstance().changeAvgGrade(S.getIndex());
 			 	EditActionListener.geteSd().setVisible(false);
 			}
 		});
@@ -340,6 +342,15 @@ public class editStudentdialog extends JDialog{
 		canc.setBackground(Color.LIGHT_GRAY);
 		canc.setPreferredSize(new Dimension(100,30));
 		canc.setText("Deny");
+		canc.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				StudentsController.getInstance().deleteGrade(PassedSubjectsTable.getInstance().getSelectedRow());
+				
+			}
+			
+		});
 		passedSubjects.add(canc,BorderLayout.WEST);
 		passedSubjects.add(new JScrollPane(PassedSubjectsTable.getInstance()),BorderLayout.SOUTH);
 		
@@ -347,6 +358,16 @@ public class editStudentdialog extends JDialog{
 		pass.setBackground(Color.LIGHT_GRAY);
 		pass.setPreferredSize(new Dimension(100,30));
 		pass.setText("Pass");
+		pass.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(SubjectsController.getInstance().checkRow(FailedSubjectsTable.getInstance().getSelectedRow())) return;
+				GradeDialog grade = new GradeDialog();
+				grade.setVisible(true);
+			}
+			
+		});
 		
 		JButton remove = new JButton();
 		remove.setBackground(Color.LIGHT_GRAY);
@@ -400,6 +421,7 @@ public class editStudentdialog extends JDialog{
 		add(defaultPanel);
 		
 		setBounds(750, 180, 500, 600);
+		setLocationRelativeTo(null);
 		
 	}
 	

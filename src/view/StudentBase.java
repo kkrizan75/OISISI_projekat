@@ -145,6 +145,43 @@ public class StudentBase {
 	public void izbrisiStudenta(int id) {
 		Studenti.remove(id);
 	}
+	
+	public void findAvgGrade(String index) {
+		float avg = 0;
+		for(Student s : Studenti) {
+			if(s.getIndex().equals(index)) {
+				for(Grade g : s.getpassedSubjects()) {
+					avg += g.getGrade();
+				}
+			avg /= s.getpassedSubjects().size();
+			s.setavgGrade(avg);
+			break;
+			}
+		}
+		
+			
+	}
+	
+	public void deleteGrade(String index, Grade g) {
+		for(Student s : Studenti) {
+			if(s.getIndex().equals(index)) {
+				s.getpassedSubjects().remove(g);
+				s.setUnpassed_subject(g.getSubject());
+				break;
+			}
+		}
+		
+	}
+	
+	public void addGrade(String index, Grade g) {
+		for(Student s : Studenti) {
+			if(s.getIndex().equals(index)) {
+				s.addPassedSubject(g);
+				s.getunpassedSubjects().remove(g.getSubject());
+				break;
+			}
+		}
+	}
 
 	public void izmeniStudenta() {
 			

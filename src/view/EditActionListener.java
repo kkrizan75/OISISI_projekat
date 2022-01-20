@@ -19,7 +19,7 @@ public class EditActionListener implements ActionListener {
 		eSd.setVisible(true);
 		}
 		if (TabbedPane.getInstance().getSelectedIndex() == 1) {
-			if (!ProfessorsController.getInstance().checkRow(ProfessorsTable.getInstance().getSelectedRow()))
+			if (!ProfessorsController.getInstance().checkRow(ProfessorsTable.getInstance().getSelectedIndex()))
 				EditProfessorsDialog.getInstance().setVisible(true);
 		}
 		if (TabbedPane.getInstance().getSelectedIndex() == 2) {

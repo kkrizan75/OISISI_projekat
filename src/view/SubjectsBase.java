@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Model.Grade;
+import Model.Professor;
+
 import Model.Student;
 import Model.Subject;
 import Model.Subject.Semester_enum;
@@ -27,12 +29,13 @@ public class SubjectsBase {
 	private long IDgenerator;
 
 	private List<Subject> subjects;
+	private List<Subject> failedSubjects;
 	private List<String> columns;
 	
 	private SubjectsBase() {
 		IDgenerator = 0;
 	
-		initProfessors();
+		initSubjects();
 
 		this.columns = new ArrayList<String>();
 		this.columns.add("Subject ID");
@@ -114,6 +117,10 @@ public class SubjectsBase {
 		return this.subjects.get(rowIndex);
 	}
 
+	public Subject getFrow(int rowIndex) {
+		return this.failedSubjects.get(rowIndex);
+	}
+	
 	public String getValueAt(int row, int column) {
 		if (row >= subjects.size()) {
 			switch (column) {
@@ -152,10 +159,11 @@ public class SubjectsBase {
 		
 	}
 	
+	
 	public String getSubjectsValueAt(int row, int column) {
 		Student s = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
-		ArrayList<Subject> failed  = s.getunpassedSubjects();
-		if(row >= failed.size()) {
+		failedSubjects  = s.getunpassedSubjects();
+		if(row >= failedSubjects.size()) {
 			switch (column) {
 			case 0:
 				return "";
@@ -172,7 +180,7 @@ public class SubjectsBase {
 			}
 			
 		}else {
-			Subject subject = failed.get(row);
+			Subject subject = failedSubjects.get(row);
 			switch (column) {
 			case 0:
 				return subject.getId();
@@ -197,7 +205,7 @@ public class SubjectsBase {
 	}
 
 	
-	private void initProfessors() {
+	private void initSubjects() {
 		this.subjects = new ArrayList<Subject>();
 		this.subjects.add(new Subject("RA1", "Kompjuteri i ostalo", Semester_enum.W, 4, null, 8, null, null ));
 
