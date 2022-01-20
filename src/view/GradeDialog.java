@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.Box;
 import javax.swing.JButton;
@@ -13,6 +14,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import java.awt.event.FocusListener;
@@ -34,7 +36,7 @@ public class GradeDialog extends JDialog {
 	private int grade;	
 	private JButton Confirm;
 	private CheckData checkData = new CheckData();
-	
+	private JLabel lblError;
 	
 	public GradeDialog() {
 		
@@ -133,31 +135,44 @@ public class GradeDialog extends JDialog {
 			public void focusLost(FocusEvent e) {
 				if (!checkData.checkDate(txtDate.getText())) {
 					txtDate.setBorder(new LineBorder(Color.red,1));
+					lblError.setText("Format - YYYY-MM-DD");
 				}else {
 					
 					txtDate.setBorder(new LineBorder(Color.green,1));
+					lblError.setText("");
 					String[] dateNums = txtDate.getText().split("-", 3);
 					setDate(LocalDate.of(Integer.parseInt(dateNums[0]),Integer.parseInt(dateNums[1]) , Integer.parseInt(dateNums[2])));
+					Confirm.setEnabled(true);
 
 				}	
 				
 			}
 			
 		});
+		
 		txtDate.setBackground(Color.LIGHT_GRAY);
 		pDate.add(lblDate);
 		pDate.add(txtDate);
+		
+		JPanel paneError = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+		lblError = new JLabel("", SwingConstants.CENTER);
+		lblError.setPreferredSize(new Dimension(300,10));
+		lblError.setVisible(true);
+		lblError.setFont(new Font("Calibri", Font.BOLD, 10));
+		lblError.setForeground(Color.red);
+		paneError.add(lblError);
 		
 		JButton cancel = new JButton();
 		cancel.setBackground(Color.GRAY);
 		cancel.setPreferredSize(new Dimension(150,40));
 		cancel.setText("Cancel");
 		
-		JButton confirm = new JButton();
-		confirm.setBackground(Color.GRAY);
-		confirm.setPreferredSize(new Dimension(150,40));
-		confirm.setText("Confirm");
-		confirm.addActionListener(new ActionListener() {
+		Confirm = new JButton();
+		Confirm.setBackground(Color.GRAY);
+		Confirm.setPreferredSize(new Dimension(150,40));
+		Confirm.setText("Confirm");
+		Confirm.setEnabled(false);
+		Confirm.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -170,7 +185,7 @@ public class GradeDialog extends JDialog {
 		
 		JPanel buttons = new JPanel();
 		buttons.add(cancel);
-		buttons.add(confirm);
+		buttons.add(Confirm);
 		
 		Box boxC = Box.createVerticalBox();
 		boxC.add(Box.createVerticalStrut(20));
@@ -178,6 +193,7 @@ public class GradeDialog extends JDialog {
 		boxC.add(pName);
 		boxC.add(panGrade);
 		boxC.add(pDate);
+		boxC.add(paneError);
 		boxC.add(buttons);
 		
 		add(boxC, BorderLayout.NORTH);

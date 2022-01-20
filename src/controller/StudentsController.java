@@ -71,6 +71,8 @@ private static StudentsController instance = null;
 	public void addPassedSubjectToStudent(Student st, Subject su, int grade, LocalDate date) {
 		Grade gr = new Grade(st, su, grade, date);
 		StudentBase.getInstance().addGrade(gr.getStudent().getIndex(), gr);
+		SubjectsBase.getInstance().findSubject(gr.getSubject().getId()).addStudentsPassed(st);
+		
 		AbstractTableFailedSubjects modelsj = (AbstractTableFailedSubjects) FailedSubjectsTable.getInstance().getModel();
     	modelsj.fireTableDataChanged();
     	Main_Frame.getInstance().validate();
@@ -89,6 +91,7 @@ private static StudentsController instance = null;
 	if (result == JOptionPane.YES_OPTION) {
 		Grade gr = GradeBase.getInstance().getRow(rowSelectedIndex);
 		StudentBase.getInstance().deleteGrade(gr.getStudent().getIndex(), gr);
+		SubjectsBase.getInstance().findSubject(gr.getSubject().getId()).addStudentsFailed(gr.getStudent());
 		
 		AbstractTablePassedSubjects model = (AbstractTablePassedSubjects) PassedSubjectsTable.getInstance().getModel();
 		model.fireTableDataChanged();

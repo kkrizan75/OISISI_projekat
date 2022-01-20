@@ -4,6 +4,8 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Model.Grade;
 import Model.Professor;
 
@@ -227,6 +229,10 @@ public class SubjectsBase {
 	public void deleteSubject(String ID) {
 		for(Subject s : subjects) {
 			if(s.getId().equals(ID)) {
+				if(s.getstudentsFailed().size() != 0 || s.getProfessor() != null) {
+					JOptionPane.showMessageDialog(Main_Frame.getInstance(),"This subject is taught by existing Professor or it has one or more students attending it. It can't be deleted!");
+					break;
+				}
 				subjects.remove(s);
 				break;
 			}
