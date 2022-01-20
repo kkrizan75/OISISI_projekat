@@ -61,7 +61,7 @@ public class StudentTable extends JTable {
 				@Override
 				public void sorterChanged(RowSorterEvent e) {
 					// TODO Auto-generated method stub
-					System.out.println(e.getSource() + "");
+					//System.out.println(e.getSource() + "");
 					
 				}
 				
