@@ -62,7 +62,12 @@ public class Toolbar extends JToolBar {
 		searchbar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ProfessorsTable.getInstance().searchProfessors(searchbar.getText());
+				if (TabbedPane.getInstance().getSelectedIndex() == 1) {
+					ProfessorsTable.getInstance().searchProfessors(searchbar.getText());
+					}
+				if (TabbedPane.getInstance().getSelectedIndex() == 2) {
+					SubjectsTable.getInstance().searchSubjects(searchbar.getText());	
+				}
 			}
 		});
 		add(searchbar);
@@ -78,8 +83,14 @@ public class Toolbar extends JToolBar {
 				if (TabbedPane.getInstance().getSelectedIndex() == 1) {
 					ProfessorsTable.getInstance().searchProfessors(searchbar.getText());
 					}
+
+				if (TabbedPane.getInstance().getSelectedIndex() == 2) {
+					SubjectsTable.getInstance().searchSubjects(searchbar.getText());
+					}
+
 				if (TabbedPane.getInstance().getSelectedIndex() == 0)
 					StudentTable.getInstance().searchStudents(searchbar.getText());
+
 				}
 		});
 		add(btnSearch);

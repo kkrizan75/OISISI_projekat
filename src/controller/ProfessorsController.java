@@ -1,6 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
@@ -78,6 +79,11 @@ private static ProfessorsController instance = null;
 		}
 		return false;
 	}
+	
+	public List<Professor> getProfessors() {
+		return ProfessorsBase.getInstance().getProfessors();
+	}
+	
 	
 	public void editProfessor(int rowSelectedIndex) {
 		if (checkRow(rowSelectedIndex)) return;
