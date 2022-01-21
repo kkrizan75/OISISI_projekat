@@ -4,11 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.WindowConstants;
+
+import controller.Write;
+
+import javax.swing.JOptionPane;
 
 public class Main_Frame extends JFrame {
 	
@@ -52,7 +59,63 @@ public class Main_Frame extends JFrame {
 		defaultPanel.add(TabbedPane.getInstance(),BorderLayout.CENTER);
 		add(defaultPanel);
 		
-		
+		addWindowListener(new WindowListener() {
+
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowClosing(WindowEvent e) {
+				
+				int code = JOptionPane.showConfirmDialog(Main_Frame.getInstance(), "Are you sure?");
+				if(code!=JOptionPane.YES_OPTION) {
+					setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+				}else {
+					setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+					try {
+						Write.getInstance().Save();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+			}
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 		
 		}
 }

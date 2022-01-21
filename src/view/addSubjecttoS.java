@@ -124,6 +124,7 @@ public class addSubjecttoS extends JDialog{
 				Subject s = SubjectsBase.getInstance().findSubject(fs.getAls().get(fs.getSelectedRow()).getId());
 				Student stu = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
 				stu.setUnpassed_subject(s);
+				s.addStudentsFailed(stu);
 				AbstractTableFailedSubjects model = (AbstractTableFailedSubjects) FailedSubjectsTable.getInstance().getModel();
 				model.fireTableDataChanged();
 				editStudentdialog.getInstance().validate();
