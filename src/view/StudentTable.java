@@ -56,16 +56,6 @@ public class StudentTable extends JTable {
 			});
 			
 			studentSort =new TableRowSorter<AbstractTableStudents>(studAbstractTable);
-			studentSort.addRowSorterListener(new RowSorterListener() {
-
-				@Override
-				public void sorterChanged(RowSorterEvent e) {
-					// TODO Auto-generated method stub
-					//System.out.println(e.getSource() + "");
-					
-				}
-				
-			});
 			this.setRowSorter(studentSort);
 			
 		
