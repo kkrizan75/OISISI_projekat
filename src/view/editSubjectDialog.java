@@ -306,7 +306,8 @@ public class editSubjectDialog extends JDialog{
 		
 		add(boxC, BorderLayout.NORTH);
 		
-		setBounds(750, 180, 500, 600);
+		this.setSize(new Dimension(500, 600));
+		setLocationRelativeTo(Main_Frame.getInstance());
 		setLocationRelativeTo(null);
 	}
 

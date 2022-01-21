@@ -450,8 +450,9 @@ public class editStudentdialog extends JDialog{
 		defaultPanel.add(dT,BorderLayout.CENTER);
 		add(defaultPanel);
 		
-		setBounds(750, 180, 500, 600);
-		setLocationRelativeTo(null);
+		this.setSize(new Dimension(500, 600));
+		setLocationRelativeTo(Main_Frame.getInstance());
+		
 		
 	}
 	

@@ -68,7 +68,8 @@ public class DepartmentDialog extends JDialog{
 		pa2.add(Change);
 		add(pan);
 		add(pa2,BorderLayout.SOUTH);
-		setBounds(750, 180, 500, 600);
+		this.setSize(new Dimension(500, 600));
+		setLocationRelativeTo(Main_Frame.getInstance());
 		setVisible(true);
 	}
 }

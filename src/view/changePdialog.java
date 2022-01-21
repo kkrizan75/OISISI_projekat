@@ -39,11 +39,6 @@ public class changePdialog extends JDialog{
 		
 		public AbstractTableProfs() {
 			als = ProfessorsBase.getInstance().getProfDEP(Read.getInstance().getDep().get(DepartmentTable.getInstance().getSelectedRow()+1).getCode());	
-//			for (Professor p : als) {
-//				System.out.println(p.getName());
-//				
-//			}
-//			System.out.println("\n\n");
 		}
 		
 		private static final long serialVersionUID = 1L;
@@ -160,7 +155,8 @@ public class changePdialog extends JDialog{
 		jp.add(canc);
 		add(st);
 		add(jp,BorderLayout.SOUTH);
-		setBounds(750, 180, 500, 600);
+		this.setSize(new Dimension(500, 600));
+		setLocationRelativeTo(Main_Frame.getInstance());
 		setVisible(true);
 	}
 }

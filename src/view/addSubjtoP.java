@@ -112,7 +112,8 @@ public class addSubjtoP extends JDialog{
 		allSubjects ss = new allSubjects();
 		JScrollPane st = new JScrollPane(ss);
 		
-		setBounds(750, 180, 500, 600);
+		this.setSize(new Dimension(500, 600));
+		setLocationRelativeTo(Main_Frame.getInstance());
 		JButton conf = new JButton();
 		conf.setText("Confirm");
 		conf.setBackground(Color.LIGHT_GRAY);
