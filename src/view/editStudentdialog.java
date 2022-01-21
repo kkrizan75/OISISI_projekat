@@ -405,6 +405,7 @@ public class editStudentdialog extends JDialog{
 				Student stu = StudentBase.getInstance().findStudent(StudentsController.getInstance().findSelcetedStudent(getInstance().getStu()).getIndex());
 				Subject s = stu.getRowSub(FailedSubjectsTable.getInstance().getSelectedRow());
 				stu.removeUnpassed_subject(s.getId());
+				s.getstudentsFailed().remove(stu);
 				AbstractTableFailedSubjects model = (AbstractTableFailedSubjects) FailedSubjectsTable.getInstance().getModel();
 				model.fireTableDataChanged();
 				editStudentdialog.getInstance().validate();
