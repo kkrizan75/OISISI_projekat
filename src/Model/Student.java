@@ -86,7 +86,7 @@ public class Student {
 	public void setbirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
-	public Address getAdress() {
+	public Address getAdressx() {
 		return address;
 	}
 	public void setAdress(Address address) {

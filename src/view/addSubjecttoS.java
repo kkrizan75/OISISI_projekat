@@ -31,7 +31,7 @@ public class addSubjecttoS extends JDialog{
 		 * 
 		 */
 		
-		private ArrayList<Subject> als = SubjectsBase.getInstance().unpassedSforStudent(StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow()));
+		private ArrayList<Subject> als = SubjectsBase.getInstance().unpassedSforStudent(StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()));
 		
 		public ArrayList<Subject> getAls(){
 			return als;
@@ -41,7 +41,7 @@ public class addSubjecttoS extends JDialog{
 
 		@Override
 		public int getRowCount() {
-			return SubjectsBase.getInstance().unpassedSforStudent(StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow())).size();
+			return SubjectsBase.getInstance().unpassedSforStudent(StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex())).size();
 		}
 
 		@Override
@@ -122,7 +122,7 @@ public class addSubjecttoS extends JDialog{
 			public void actionPerformed(ActionEvent e) {
 				if(fs.getSelectedRow() == -1) return;
 				Subject s = SubjectsBase.getInstance().findSubject(fs.getAls().get(fs.getSelectedRow()).getId());
-				Student stu = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedRow());
+				Student stu = StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex());
 				stu.setUnpassed_subject(s);
 				s.addStudentsFailed(stu);
 				AbstractTableFailedSubjects model = (AbstractTableFailedSubjects) FailedSubjectsTable.getInstance().getModel();

@@ -53,6 +53,7 @@ public class SubjectsBase {
 		boolean b = true;
 		for (Subject su: subjects) {
 			b = true;
+			if(su.getyearOfStudy() != s.getcurrentYear()) b = false;
 			for(Subject su1 : s.getunpassedSubjects()) {
 				if(su.getId().equals(su1.getId())) {
 					b = false;

@@ -13,7 +13,7 @@ public class DeleteActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if (TabbedPane.getInstance().getSelectedIndex() == 0) {
-			StudentsController.getInstance().deleteStudent(StudentTable.getInstance().getSelectedRow());
+			StudentsController.getInstance().deleteStudent(StudentTable.getInstance().getSelectedIndex());
 			}
 			
 			if (TabbedPane.getInstance().getSelectedIndex() == 1) {

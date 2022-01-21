@@ -31,4 +31,8 @@ public class AbstractTableStudents extends AbstractTableModel{
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		return StudentBase.getInstance().getValueAt(rowIndex, columnIndex);
 	}
+	
+	public Class getColumnClass(int c) {
+		   return getValueAt(0, c).getClass();
+	}
 }

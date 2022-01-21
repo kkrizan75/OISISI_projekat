@@ -4,9 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
+
+import java.util.Locale;
+import java.util.ResourceBundle;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +27,8 @@ public class Main_Frame extends JFrame {
 	
 	private static Main_Frame instance = null;
 	
+	//private ResourceBundle resourceBundle;
+	
 	public static Main_Frame getInstance() {
 		if(instance == null) 
 			instance = new Main_Frame();
@@ -35,10 +42,13 @@ public class Main_Frame extends JFrame {
 		Dimension dim = kit.getScreenSize();
 		setSize(3*dim.width/4, 3* dim.height/4);
 		setLocationRelativeTo(null);
+		//Locale.setDefault(new Locale("sr", "RS"));
+		//System.out.println("Novi Default lokal: " + Locale.getDefault());
+
 		//Image img = kit.getImage("images/iconaamong.png");
 		//setIconImage(img);
 		getContentPane().setBackground(Color.gray);
-		setTitle("Studentska Sluûba");
+		setTitle("Studentska Slu≈æba");
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
