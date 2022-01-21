@@ -14,7 +14,7 @@ public class EditActionListener implements ActionListener {
 	private static editSubjectDialog eSud = null;
 	public void actionPerformed(ActionEvent arg0) { 
 		if (TabbedPane.getInstance().getSelectedIndex() == 0) {
-		if (StudentsController.getInstance().checkRow(StudentTable.getInstance().getSelectedRow())) return;
+		if (StudentsController.getInstance().checkRow(StudentTable.getInstance().getSelectedIndex())) return;
 		eSd = new editStudentdialog(Main_Frame.getInstance(),"Edit Student",true);
 		eSd.setVisible(true);
 		}
