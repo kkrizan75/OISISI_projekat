@@ -9,11 +9,11 @@ import javax.swing.Box;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 
@@ -157,6 +157,53 @@ public class Menu_Bar extends JMenuBar {
 		miHelp.setIcon(icon);
 		miHelp.setMnemonic(KeyEvent.VK_H);
 		miHelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+		JDialog Help = new JDialog();
+		Help.setBounds(750, 180, 500, 600);
+		JTextPane HelpKristian = new JTextPane();
+		HelpKristian.setText("Menu Bar contains File, Edit, Help \n"
+				+ "File: you can ADD(Ctrl + N) new Student, Professor or Subject according "
+				+ "to current chosen tab, SAVE(Ctrl +S) changes, OPEN Students (Ctrl +T) ,"
+				+ "Professors (Ctrl+P) or Subjects(Ctrl +U) desired tab or edit Departments"
+				+ "(Ctrl+R) or Exit application (Ctrl + X) "
+				+ "\n\nEdit: In current tab, you can EDIT(Ctrl+E) selected Student, Professor or Subject"
+				+ "or DELETE(Ctrl +D) it"
+				+ "\n\nHelp: you can get information ABOUT(Ctrl+A) application and its autors"
+				+ "or get HELP(Ctrl+H) about using app"
+				+ "\n\nStatus Bar: Name of Application, current open tab and current time"
+				+ "\n\nTab Students: All added students in app"
+				+ "\n\nAdd Student dialog: you have to input information in specific format in order"
+				+ "to Add New Student,address format 'street,number,ciry,country',date format 'yyyy.mm.dd' "
+				+ "\n\nEdit Student: you can only edit data with same format as add"
+				+ "\n\nRemove Student: Remove selected student form base"
+				+ "\n\nAdd Subject dialog: you have to input information in specific format in order"
+				+ "to add new Subject"
+				+ "\n\nEdit Student: you can only edit data with same format as add"
+				+ "\n\nPassed Subjects: in edit student dialog it shows all subject that student "
+				+ "has passed and its grade"
+				+ "\n\nAdd Subject to Student: it allows Student to take an exam for specific Subject"
+				+ "\n\nRemove Subject from Student: Student cannot take an exam for specific Subject"
+				+ "\n\nSearch Student: at tab Student it allows to search specific Student"
+				+ "\n\nSort Students: you can sort student in ascending or descending order by clicking"
+				+ "on name of column of Student"
+				+ "\n\nProfessors Subjects: it shows Subjects that Professor is on"
+				+ "\n\nAdd Subject to Professor: adding Subjects that doesnt have Professor to "
+				+ "chosen Professor \n\nRemove Subject from Professor: Professor is not longer"
+				+ "Professor on chosen Subject"
+				+ "\n\nDepartments: you can add or change Boss Professor to specific department"
+				+ "you can only add it if professor is working on that department, have more than 5"
+				+ "years of experience and have title of professor or associate professor");
+		JScrollPane jsp = new JScrollPane(HelpKristian);
+		Help.add(jsp);
+		Help.setTitle("Help");
+		miHelp.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Help.setVisible(true);
+			}
+			
+		});
+		
 		JMenuItem miAbout = new JMenuItem("About");
 		icon = new ImageIcon("images\\about.png");
 		miAbout.setIcon(icon);

@@ -17,7 +17,7 @@ public class Main_Frame extends JFrame {
 	
 	private static Main_Frame instance = null;
 	
-	private ResourceBundle resourceBundle;
+	//private ResourceBundle resourceBundle;
 	
 	public static Main_Frame getInstance() {
 		if(instance == null) 
@@ -32,7 +32,7 @@ public class Main_Frame extends JFrame {
 		Dimension dim = kit.getScreenSize();
 		setSize(3*dim.width/4, 3* dim.height/4);
 		setLocationRelativeTo(null);
-		Locale.setDefault(new Locale("sr", "RS"));
+		//Locale.setDefault(new Locale("sr", "RS"));
 		//System.out.println("Novi Default lokal: " + Locale.getDefault());
 
 		//Image img = kit.getImage("images/iconaamong.png");
