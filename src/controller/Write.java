@@ -250,16 +250,16 @@ public class Write {
 				String addressRes = "";
 				String[] date =  s.getbirthDate().toString().split("\\-",4);
 				String dateStud = date[2] + "." + date[1] + "."+ date[0] + ".";
-				if(s.getAdress() != null) {
-					if(addressMap.containsValue(s.getAdress())) {
-						addressRes = Integer.toString(findAddressID(s.getAdress()));
+				if(s.getAdressx() != null) {
+					if(addressMap.containsValue(s.getAdressx())) {
+						addressRes = Integer.toString(findAddressID(s.getAdressx()));
 					}else {
 						if(addressMap.isEmpty()) {
-							addressMap.put( 1, s.getAdress());
+							addressMap.put( 1, s.getAdressx());
 							addressID = 1;
 							addressRes = "1";
 						}else {
-							addressMap.put(++addressID, s.getAdress());
+							addressMap.put(++addressID, s.getAdressx());
 							addressRes = Integer.toString(addressID);
 						}
 					}
