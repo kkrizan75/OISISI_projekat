@@ -3,6 +3,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import Model.Address;
 import Model.Department;
 import Model.Professor;
@@ -44,14 +46,14 @@ public class ProfessorsBase {
 		
 		public ArrayList<Professor> getProfDEP(String s) {
 			ArrayList<Professor> ret = new ArrayList<Professor>();
-			ArrayList<Professor> profs = null;
-			boolean b = false; 
+			ArrayList<Professor> profs = null; 
 			for(Department d : Read.getInstance().getDep().values()) {
 				if(d == null) continue;
 				if(d.getCode().equals(s)) {
 					profs = d.getProf_list();
 				if(profs == null) return null;
 					for(Professor p1 : profs) {
+							if(!getInstance().contains(p1)) continue;
 							if(d.getBoss().getID_number().equals(p1.getID_number())) continue;
 							if((p1.getTitle().equals("VANREDNI_PROFESOR")||p1.getTitle().equals("REDOVNI_PROFESOR")
 									&& p1.getYears_of_work_exp() > 5))
@@ -62,6 +64,13 @@ public class ProfessorsBase {
 			}
 			return ret;
 			
+		}
+		
+		public boolean contains(Professor p) {
+			for (Professor p1:professors) {
+				if(p1.getID_number().equals(p.getID_number())) return true;
+			}
+			return false;
 		}
 		
 		public ArrayList<Subject> SubjectsofProfessor(Professor p) {
@@ -166,6 +175,12 @@ public class ProfessorsBase {
 		}
 		
 		public void deleteProfessor(String ID) {
+			for(Department d:Read.getInstance().getDep().values()) {
+				if(d.getBoss().getID_number().equals(ID)) {
+					JOptionPane.showMessageDialog(Main_Frame.getInstance(),"This Professor is Boss on one of the Departments. It can't be deleted!");
+					return;
+				}
+			}
 			for(Professor p : professors) {
 				if(p.getID_number().equals(ID)) {
 					professors.remove(p);

@@ -31,11 +31,19 @@ public class changePdialog extends JDialog{
 		/**
 		 * 
 		 */
-		
-		private ArrayList<Professor> als = ProfessorsBase.getInstance().getProfDEP(Read.getInstance().getDep().get(DepartmentTable.getInstance().getSelectedRow()+1).getCode());
+		private ArrayList<Professor> als;
 		
 		public ArrayList<Professor> getAls(){
 			return als;
+		}
+		
+		public AbstractTableProfs() {
+			als = ProfessorsBase.getInstance().getProfDEP(Read.getInstance().getDep().get(DepartmentTable.getInstance().getSelectedRow()+1).getCode());	
+//			for (Professor p : als) {
+//				System.out.println(p.getName());
+//				
+//			}
+//			System.out.println("\n\n");
 		}
 		
 		private static final long serialVersionUID = 1L;
@@ -86,17 +94,12 @@ public class changePdialog extends JDialog{
 	
 	public class Profs extends JTable {
 		
-		private AbstractTableProfs abt = new AbstractTableProfs();
 		
 		public Profs() {
 			this.setRowSelectionAllowed(true);
 			this.setColumnSelectionAllowed(true);
 			this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			this.setModel(abt);
-		}
-		
-		public ArrayList<Professor> getAls(){
-			return abt.getAls();
+			this.setModel(new AbstractTableProfs());
 		}
 		
 		public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
@@ -127,6 +130,7 @@ public class changePdialog extends JDialog{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(ss.getSelectedRow() == -1) return;
 				Professor p1 = ProfessorsBase.getInstance().getProfDEP(Read.getInstance().getDep().get(DepartmentTable.getInstance().getSelectedRow()+1).getCode()).
 						get(ss.getSelectedRow());
 				Department d = Read.getInstance().getDep().get(DepartmentTable.getInstance().getSelectedRow()+1);

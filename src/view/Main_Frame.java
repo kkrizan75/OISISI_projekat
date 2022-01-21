@@ -38,7 +38,7 @@ public class Main_Frame extends JFrame {
 		//Image img = kit.getImage("images/iconaamong.png");
 		//setIconImage(img);
 		getContentPane().setBackground(Color.gray);
-		setTitle("Studentska Sluûba");
+		setTitle("Studentska Slu≈æba");
 		setLocationRelativeTo(null);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

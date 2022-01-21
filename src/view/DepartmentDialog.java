@@ -59,7 +59,7 @@ public class DepartmentDialog extends JDialog{
 					JOptionPane.showMessageDialog(Main_Frame.getInstance(), "No row selected!","Error",2);
 					return;
 				}
-				new changePdialog(Main_Frame.getInstance(),"Change Professor",true); 
+				new changePdialog(Main_Frame.getInstance(),"Change Boss",true); 
 			}
 			
 		});
