@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -56,17 +57,41 @@ public class StudentTable extends JTable {
 			});
 			
 			studentSort =new TableRowSorter<AbstractTableStudents>(studAbstractTable);
-			studentSort.addRowSorterListener(new RowSorterListener() {
+			studentSort.setComparator(0, new Comparator<String>() {
 
 				@Override
-				public void sorterChanged(RowSorterEvent e) {
-					// TODO Auto-generated method stub
-					System.out.println(e.getSource() + "");
+				public int compare(String o1, String o2) {
+
+	                String o1StringPart = o1.replaceAll("\\d", "");
+	                String o2StringPart = o2.replaceAll("\\d", "");
+
+
+	                if(o1StringPart.equalsIgnoreCase(o2StringPart))
+	                {
+	                    return extractInt(o1) - extractInt(o2);
+	                }
+	                return o1.compareTo(o2);
+	            }
+
+	            int extractInt(String s) {
+	                String num = s.replaceAll("\\D", "");
+	                return num.isEmpty() ? 0 : Integer.parseInt(num);
+	            }
 					
-				}
 				
 			});
 			this.setRowSorter(studentSort);
+			
+			studentSort.setComparator(5, new Comparator<String>() {
+
+				@Override
+				public int compare(String o1, String o2) {
+					Float int1 = Float.parseFloat(o1);
+					Float int2 = Float.parseFloat(o2);
+					return  int1.compareTo(int2);
+				}
+				
+			});
 			
 		
 	}

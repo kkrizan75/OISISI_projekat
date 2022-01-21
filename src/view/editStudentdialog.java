@@ -352,7 +352,13 @@ public class editStudentdialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				StudentsController.getInstance().deleteGrade(PassedSubjectsTable.getInstance().getSelectedRow());
+				passedSubjects.remove(ECTS);
+				passedSubjects.remove(avg);
+				ECTS.setText("Average Grade: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getavgGrade());
 				
+				avg.setText("ECTS: " + StudentsController.getInstance().findSelcetedStudent(StudentTable.getInstance().getSelectedIndex()).getECTS());
+				passedSubjects.add(avg);
+				passedSubjects.add(ECTS);
 			}
 			
 		});
