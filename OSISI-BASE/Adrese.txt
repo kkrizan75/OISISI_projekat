@@ -1,12 +1,12 @@
-1	Šafarikova	2	Novi Sad	Srbija
-2	Nikole Tesle	56	Novi Sad	Srbija
-3	Bulevar Patrijaha Pavla	3	Beograd	Srbija
-4	Stražilovska	6a	Novi Sad	Srbija
-5	Nikole Pašića	2d	Kikinda	Srbija
-6	Bulevar Kralja Petra	22	Niš	Srbija
-7	Tolstojeva	31	Novi Sad	Srbija
-8	Marićeva	11	Kragujevac	Srbija
-9	Stražilovska	3	Beograd	Srbija
-10	Nikole Pašića	6a	Novi Sad	Srbija
-11	Bulevar Kralja Petra	2d	Niš	Srbija
+1	ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â afarikova	2	Novi Sad	Srbija
+2	Nikole PaÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡iÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¡a	6a	Novi Sad	Srbija
+3	Nikole Tesle	56	Novi Sad	Srbija
+4	Bulevar Patrijaha Pavla	3	Beograd	Srbija
+5	StraÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¾ilovska	6a	Novi Sad	Srbija
+6	Nikole PaÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡iÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¡a	2d	Kikinda	Srbija
+7	Bulevar Kralja Petra	22	NiÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡	Srbija
+8	Tolstojeva	31	Novi Sad	Srbija
+9	MariÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¡eva	11	Kragujevac	Srbija
+10	StraÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¾ilovska	3	Beograd	Srbija
+11	Bulevar Kralja Petra	2d	NiÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡	Srbija
 12	Knez Mihajlova	22	Beograd	Srbija

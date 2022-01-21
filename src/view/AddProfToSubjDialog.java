@@ -71,6 +71,7 @@ public class AddProfToSubjDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				editSubjectDialog.getInstance().setAdd(true);
 				
 			}
 			

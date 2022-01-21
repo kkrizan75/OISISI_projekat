@@ -80,6 +80,7 @@ public class editSubjectDialog extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {	
 				AddProfToSubjDialog dial = new AddProfToSubjDialog();
+				add.setEnabled(false);
 				dial.setVisible(true);
 			}
 			

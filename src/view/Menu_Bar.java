@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import javax.swing.Box;
 import javax.swing.Icon;
@@ -16,6 +17,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
+
+import controller.Write;
 
 public class Menu_Bar extends JMenuBar {
 	
@@ -107,6 +110,20 @@ public class Menu_Bar extends JMenuBar {
 		miSave.setIcon(icon);
 		miSave.setMnemonic(KeyEvent.VK_S);
 		miSave.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+		miSave.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					Write.getInstance().Save();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+			
+		});
 		JMenuItem miClose = new JMenuItem("Close");
 		icon = new ImageIcon("images\\close.png");
 		miClose.setIcon(icon);
