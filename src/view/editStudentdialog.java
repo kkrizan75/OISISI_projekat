@@ -42,7 +42,7 @@ public class editStudentdialog extends JDialog{
 	private String Name;
 	private String Surname;
 	private LocalDate birthDate;
-	private Address address ;
+	private Address address = null;
 	private String contactPhone;
 	private String eMail;
 	private String Index;
@@ -51,8 +51,6 @@ public class editStudentdialog extends JDialog{
 	private Status_enum Status = Status_enum.S;
 	private int selectedStudent = -1;
 	private JPanel failedSubjects = new JPanel();
-	private JScrollPane jscp = new JScrollPane(FailedSubjectsTable.getInstance());
-	private boolean in = false;
 	private String oldIND;
 	private JLabel avg = new JLabel();
 	private JLabel ECTS = new JLabel();
@@ -69,7 +67,8 @@ public class editStudentdialog extends JDialog{
 		this.setContactPhone(S.getcontactPhone());
 		this.seteMail(S.geteMail());
 		this.setIndex(S.getIndex());
-		this.setAddress(S.getAdress());
+		if(S.getAdressx() == null) this.setAddress(new Address("","","",""));
+		else this.setAddress(S.getAdressx());
 		this.setBirthDate(S.getbirthDate());
 		this.setYearOfEnrollment(S.getyearOfEnrollment());
 		this.setCurrentYear(S.getcurrentYear());

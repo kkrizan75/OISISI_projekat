@@ -21,6 +21,7 @@ public class Address {
 
 	@Override
 	public String toString() {
+		if(street.equals("") && city.equals("") && streetnum.equals("") && country.equals("")) return "";
 		return street + ", " + streetnum + ", " + city + ", " + country;
 	}
 
