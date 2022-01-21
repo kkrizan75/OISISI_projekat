@@ -82,7 +82,6 @@ public class EditProfessorsDialog extends JDialog{
 
 		
 		Professor prof = ProfessorsController.getInstance().findSelectedProfessor(ProfessorsTable.getInstance().getSelectedIndex());
-		System.out.println(ProfessorsTable.getInstance().getSelectedIndex());
 		
 		initCheck(prof);
 		

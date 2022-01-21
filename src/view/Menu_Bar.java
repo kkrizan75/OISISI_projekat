@@ -1,15 +1,20 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+import javax.swing.Box;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
 import javax.swing.KeyStroke;
 
 public class Menu_Bar extends JMenuBar {
@@ -157,6 +162,28 @@ public class Menu_Bar extends JMenuBar {
 		miAbout.setIcon(icon);
 		miAbout.setMnemonic(KeyEvent.VK_A);
 		miAbout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		JDialog About = new JDialog();
+		JTextPane LVersion = new JTextPane();
+		LVersion.setText("Version: Alfa");
+		JTextPane LKristian = new JTextPane();
+		LKristian.setText("About Kristian: \n Kristian is student, third year of FTS in Novi Sad and this is his first bigger project "
+				+ " it took few days of work to get this app to this current state he hopes he would gat a good grade"
+				+ " for this. ");
+		About.setTitle("About");
+		LVersion.add(LKristian);
+		About.add(LVersion,BorderLayout.NORTH);
+		About.add(Box.createVerticalStrut(20));
+		About.add(LKristian,BorderLayout.CENTER);
+		About.setBounds(750, 180, 500, 600);
+		miAbout.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				About.setVisible(true);
+			}
+			
+		});
+		
 		help.add(miHelp);
 		help.addSeparator();
 		help.add(miAbout);
